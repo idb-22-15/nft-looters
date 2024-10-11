@@ -32,6 +32,7 @@ export default {
   safelist: ['dark'],
 
   theme: {
+    screens,
     container: {
       center: true,
       padding: '0rem',
@@ -107,15 +108,5 @@ export default {
         },
       },
     },
-    fontSize: {
-      '2xl': '32px',
-      '3xl': '36px',
-      'base': '20px',
-      'lg': '24px',
-      'sm': '16px',
-      'xl': '28px',
-      'xs': '14px',
-    },
-    screens,
   },
 } satisfies Config
