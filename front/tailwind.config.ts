@@ -86,7 +86,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Montserrat', ...fontFamily.sans],
+        sans: ['Onest', ...fontFamily.sans],
       },
 
       keyframes: {

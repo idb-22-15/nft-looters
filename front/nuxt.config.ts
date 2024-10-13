@@ -5,10 +5,20 @@ export default defineNuxtConfig({
   telemetry: { enabled: false },
   modules: [
     '@nuxt/fonts',
+    '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
-    '@nuxt/eslint',
   ],
+
+  fonts: {
+    defaults: {
+      weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    },
+    // families: [
+    //   { name: 'Onest', provider: 'google' },
+    // ],
+  },
+
   eslint: {
     config: {
       stylistic: true,
@@ -18,5 +28,5 @@ export default defineNuxtConfig({
   imports: {
     dirs: [],
   },
-  components: { dirs: [] }
+  // components: { dirs: [] }
 })

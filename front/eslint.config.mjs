@@ -1,13 +1,13 @@
 // import antfu from '@antfu/eslint-config'
 import oxlint from 'eslint-plugin-oxlint'
-import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
+// import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 // import tseslint from 'typescript-eslint'
 // import perfectionist from 'eslint-plugin-perfectionist'
 import { withNuxt } from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
   // perfectionist.configs['recommended-alphabetical'],
-  ...pluginVueA11y.configs['flat/recommended'],
+  // ...pluginVueA11y.configs['flat/recommended'],
   // {
   //   rules: tseslint.configs.strict.at(-1).rules
   // },
