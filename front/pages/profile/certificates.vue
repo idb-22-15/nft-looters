@@ -5,6 +5,7 @@ import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '~/components/ui/dialog'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '~/components/ui/form'
 import { Button } from '~/components/ui/button'
+import { VisuallyHidden } from 'radix-vue'
 
 import { z } from 'zod'
 import { useForm } from 'vee-validate'
@@ -19,7 +20,7 @@ type Certificate = {
   verified: boolean
 }
 
-const certificates: Certificate[] = [
+const mockCertificates: Certificate[] = [
   {
     id: '1',
     title: 'Сертификат безопасности',
@@ -57,13 +58,16 @@ const certificates: Certificate[] = [
   },
 ]
 
-const issuers: Issuer[] = [
+const certificates = ref(mockCertificates)
+
+const mockIssuers: Issuer[] = [
   { id: 'hnhfa36gfd', name: 'Google', certificateTypes: ['Security Certificate', 'Compliance Certificate'] },
   { id: 'ap4vteple', name: 'Apple', certificateTypes: ['Quality Certificate'] },
   { id: 'micsww3rosoft', name: 'Microsoft', certificateTypes: ['Training Certificate', 'Educational Certificate'] },
   { id: 'am24a5zon', name: 'Amazon', certificateTypes: ['Educational Certificate'] },
   { id: 'm2cse762ta', name: 'Meta', certificateTypes: ['Training Certificate'] },
 ]
+const issuers = ref(mockIssuers)
 
 const { toast } = useToast()
 const df = new DateFormatter('ru-RU', { dateStyle: 'short' })
@@ -74,6 +78,8 @@ type Issuer = {
   certificateTypes: string[]
 }
 
+const requiredError = 'Это обязательное поле'
+
 const requestSchema = z.object({
   issuer: z.object({
     id: z.string(),
@@ -81,20 +87,36 @@ const requestSchema = z.object({
     certificateTypes: z.array(z.string()),
   }),
   certificateType: z.string(),
-  message: z.string().optional(),
+  message: z.string().max(256).optional(),
 })
 
+const isRequestDialogOpen = ref(false)
 const { values: requestValues, handleSubmit: handleSubmitRequest, setFieldValue: setRequestFieldValue, meta: requestMeta }
  = useForm({ validationSchema: toTypedSchema(requestSchema), initialValues: {} })
 
-const onSubmitRequest = handleSubmitRequest((values) => {
+const onSubmitRequest = handleSubmitRequest((_values) => {
   toast({ title: 'Запрос отправлен', variant: 'default', duration: 1000 })
-  // const certificate: Certificate = {
-  //   id: crypto.randomUUID(),
-  //   issuedDate: new Date(),
-  //   issuerId: 'me',
-  //   title: values.
-  // }
+  isRequestDialogOpen.value = false
+})
+
+const createSchema = z.object({
+  title: z.string({ message: requiredError }).min(1).max(256),
+})
+
+const isCreateDialogOpen = ref(false)
+const { values: _createValues, handleSubmit: handleSubmitCreate, meta: createMeta }
+= useForm({ validationSchema: toTypedSchema(createSchema), initialValues: {} })
+
+const onSubmitCreate = handleSubmitCreate((values) => {
+  const certificate: Certificate = {
+    id: crypto.randomUUID(),
+    issuedDate: new Date(),
+    issuerId: 'me',
+    title: values.title,
+    verified: false,
+  }
+  certificates.value.splice(0, 0, certificate)
+  isCreateDialogOpen.value = false
 })
 </script>
 
@@ -104,8 +126,8 @@ const onSubmitRequest = handleSubmitRequest((values) => {
       Сертификаты
     </h1>
     <div class="flex gap-x-4">
-      <Dialog>
-        <DialogTrigger>
+      <Dialog v-model:open="isRequestDialogOpen">
+        <DialogTrigger :as-child="true">
           <Button>
             Запросить
           </Button>
@@ -113,13 +135,15 @@ const onSubmitRequest = handleSubmitRequest((values) => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Запросить сертификат</DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Запросить сертификат</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
           <form
             class="flex flex-col gap-y-4"
             @submit.prevent="onSubmitRequest"
           >
             <FormField
-              v-slot="{ componentField }"
               name="issuer"
             >
               <FormItem>
@@ -202,21 +226,49 @@ const onSubmitRequest = handleSubmitRequest((values) => {
         </DialogContent>
       </Dialog>
 
-      <Dialog>
-        <DialogTrigger>
+      <Dialog v-model:open="isCreateDialogOpen">
+        <DialogTrigger :as-child="true">
           <Button
             type="submit"
             variant="secondary"
           >
-            Создать от своего имени
+            Создать неподтверждённый
           </Button>
         </DialogTrigger>
         <DialogContent>
-          ff
+          <DialogHeader>
+            <DialogTitle>Создать неподтверждённый</DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Создать неподтверждённый</DialogDescription>
+            </VisuallyHidden>
+          </DialogHeader>
+          <form
+            class="flex flex-col gap-y-4"
+            @submit.prevent="onSubmitCreate"
+          >
+            <FormField
+              v-slot="{ componentField }"
+              name="title"
+            >
+              <FormItem>
+                <FormLabel>Название</FormLabel>
+                <FormControl>
+                  <Input v-bind="componentField" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+            <Button
+              :disabled="!(createMeta.dirty && createMeta.valid)"
+              type="submit"
+            >
+              Добавить
+            </Button>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4">
       <div
         v-for="certificate in certificates"
         :key="certificate.id"
