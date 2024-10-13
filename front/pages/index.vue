@@ -1,10 +1,11 @@
+<!-- eslint-disable vue/no-ref-object-reactivity-loss -->
 <script setup lang="ts">
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Dialog, DialogTrigger, DialogContent } from '~/components/ui/dialog'
 import { Calendar } from '~/components/ui/calendar'
 import { toDate } from 'radix-vue/date'
-import { DateFormatter, parseDate, type DateValue } from '@internationalized/date'
+import { CalendarDate, DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
 import { Popover, PopoverTrigger, PopoverContent } from '~/components/ui/popover'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { cn } from '~/lib/utils'
@@ -12,6 +13,11 @@ import { z } from 'zod'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { FormField, FormControl, FormMessage } from '~/components/ui/form'
+import { VisuallyHidden } from 'radix-vue'
+
+defineOptions({
+  name: 'ProfilePage',
+})
 
 const photos = [
   'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.lifestyleasia.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2022%2F01%2F14164044%2Fmutant-975x1024-1.jpeg&f=1&nofb=1&ipt=e196d1beae57e458b3ab8da9a2bd7a8d4a9792a4be0fb884a4f094a37ac81549&ipo=images',
@@ -23,39 +29,38 @@ type Gender = 'male' | 'female'
 const errorRequired = 'Это обязательное поле'
 
 const schema = z.object({
+  avatar: z.string().url().optional(),
   firstName: z.string({ message: errorRequired }).min(1, { message: errorRequired }).max(256),
   lastName: z.string({ message: errorRequired }).max(256),
-  birthday: z.date({ message: errorRequired }).min(new Date(0)).max(new Date()),
+  birthday: z.string({ message: errorRequired }).date(),
   gender: z.enum(['male', 'female'], { message: errorRequired }),
 })
 
 const user = ref({
+  avatar: 'https://sun9-48.userapi.com/impg/zPd7y71aGVlopDXhvJ9PA46bIpmsHiB1C0wfrA/1HOPPr6-mOA.jpg?size=1600x900&quality=96&sign=20d8367121e2ff6a41e704b51d378cc3&type=album',
   firstName: 'Матвей',
   lastName: 'Оченьдлиннофамильный',
   gender: 'male' as Gender,
-  birthday: new Date(2000, 1, 1),
+  birthday: new CalendarDate(2000, 1, 1),
 })
 
 const { values, handleSubmit, setFieldValue, meta } = useForm({ validationSchema: toTypedSchema(schema), initialValues: {
-  // eslint-disable-next-line vue/no-ref-object-reactivity-loss
+  avatar: user.value.avatar,
   firstName: user.value.firstName,
-  // eslint-disable-next-line vue/no-ref-object-reactivity-loss
   lastName: user.value.lastName,
-  // eslint-disable-next-line vue/no-ref-object-reactivity-loss
-  birthday: user.value.birthday,
-  // eslint-disable-next-line vue/no-ref-object-reactivity-loss
+  birthday: user.value.birthday.toString(),
   gender: user.value.gender,
 } })
+
+// const birthday = computed<DateValue | undefined>({
+//   get: () => values.birthday && parseDate(values.birthday.toISOString().slice(0, 10)),
+//   set: value => setFieldValue('birthday', value && toDate(value)),
+// })
 
 const onSubmit = handleSubmit((values) => {
   user.value.firstName = values.firstName
   user.value.lastName = values.lastName
   user.value.gender = values.gender
-})
-
-const birthday = computed<DateValue | undefined>({
-  get: () => values.birthday && parseDate(values.birthday.toISOString().slice(0, 10)),
-  set: value => setFieldValue('birthday', value && toDate(value)),
 })
 
 const df = new DateFormatter('ru-RU', {
@@ -65,25 +70,34 @@ const df = new DateFormatter('ru-RU', {
 
 <template>
   <div class="mx-8 mt-6 mb-8">
-    <h1 class="text-4xl font-bold">
-      Личный кабинет
+    <h1 class="text-4xl font-semibold">
+      Личный кабинет Hello wowow
     </h1>
-    <div class="grid grid-cols-[max-content_1fr] gap-x-4">
+    <div class="grid items-center mt-4 grid-cols-[max-content_1fr] gap-x-4">
       <div class="">
         <img
           alt="avatar"
           class="object-cover w-32 aspect-square rounded-full"
-          src="https://sun9-48.userapi.com/impg/zPd7y71aGVlopDXhvJ9PA46bIpmsHiB1C0wfrA/1HOPPr6-mOA.jpg?size=1600x900&quality=96&sign=20d8367121e2ff6a41e704b51d378cc3&type=album"
+          :src="values.avatar"
         >
       </div>
       <div class="">
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger :as-child="true">
             <Button variant="outline">
               Выбрать из NFT
             </Button>
           </DialogTrigger>
-          <DialogContent class="max-h-[100svh] min-w-[90vw] rounded-lg">
+
+          <DialogContent
+            class="max-h-[100svh] min-w-[90vw] rounded-lg"
+          >
+            <VisuallyHidden>
+              <DialogHeader>
+                <DialogTitle>NFT</DialogTitle>
+                <DialogDescription>NFT</DialogDescription>
+              </DialogHeader>
+            </VisuallyHidden>
             <div class="grid grid-cols-5 gap-4">
               <img
                 v-for="photo in photos"
@@ -99,7 +113,7 @@ const df = new DateFormatter('ru-RU', {
       </div>
     </div>
     <form
-      class="flex flex-col w-[500px] gap-y-4"
+      class="flex mt-6 flex-col max-w-[500px] gap-y-4"
       @submit.prevent="onSubmit"
     >
       <FormField
@@ -129,6 +143,7 @@ const df = new DateFormatter('ru-RU', {
       </FormField>
 
       <FormField
+        v-slot="{ componentField, setTouched }"
         name="birthday"
       >
         <FormItem>
@@ -139,19 +154,21 @@ const df = new DateFormatter('ru-RU', {
                 <Button
                   :class="cn(
                     'flex w-full justify-start text-left font-normal',
-                    !birthday && 'text-muted-foreground',
+                    !values.birthday && 'text-muted-foreground',
                   )"
                   variant="outline"
                 >
                   <CalendarIcon class="mr-2 h-4 w-4" />
-                  {{ birthday? df.format(toDate(birthday)) : "Pick a date" }}
+                  {{ values.birthday ? df.format(toDate(parseDate(values.birthday), getLocalTimeZone())) : "Выберете дату" }}
                 </Button>
               </FormControl>
             </PopoverTrigger>
             <PopoverContent class="w-auto p-0">
               <Calendar
-                v-model="birthday"
-                :initial-focus="true"
+                :max-value="today(getLocalTimeZone())"
+                :min-value="new CalendarDate(1900, 1, 1)"
+                :model-value="componentField.modelValue && parseDate(componentField.modelValue)"
+                @update:model-value="setFieldValue('birthday', $event?.toString()), setTouched(true)"
               />
             </PopoverContent>
           </Popover>
@@ -160,17 +177,20 @@ const df = new DateFormatter('ru-RU', {
       </FormField>
 
       <FormField
-        v-slot="{ componentField }"
+        v-slot="{ componentField, setTouched }"
         name="gender"
       >
         <FormItem>
           <FormLabel>Пол</FormLabel>
-          <Select v-bind="componentField">
-            <FormControl>
-              <SelectTrigger>
+          <Select
+            :model-value="componentField.modelValue"
+            @update:model-value="setFieldValue('gender', $event as Gender), setTouched(true) "
+          >
+            <SelectTrigger>
+              <FormControl>
                 <SelectValue />
-              </SelectTrigger>
-            </FormControl>
+              </FormControl>
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="male">
                 Мужской
@@ -183,7 +203,7 @@ const df = new DateFormatter('ru-RU', {
         </FormItem>
         <FormMessage />
       </FormField>
-      <Button :disabled="!(meta.touched && meta.valid)">
+      <Button :disabled="!(meta.dirty && meta.valid)">
         Сохранить
       </Button>
     </form>
