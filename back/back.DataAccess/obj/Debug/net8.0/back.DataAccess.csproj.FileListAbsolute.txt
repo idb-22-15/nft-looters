@@ -1,0 +1,15 @@
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\bin\Debug\net8.0\back.DataAccess.deps.json
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\bin\Debug\net8.0\back.DataAccess.runtimeconfig.json
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\bin\Debug\net8.0\back.DataAccess.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\bin\Debug\net8.0\back.DataAccess.pdb
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.csproj.AssemblyReference.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.AssemblyInfoInputs.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.AssemblyInfo.cs
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.sourcelink.json
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\refint\back.DataAccess.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.pdb
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\back.DataAccess.genruntimeconfig.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.DataAccess\obj\Debug\net8.0\ref\back.DataAccess.dll
