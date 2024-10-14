@@ -138,8 +138,8 @@ const df = new DateFormatter('ru-RU', {
           <FormControl>
             <Input v-bind="componentField" />
           </FormControl>
+          <FormMessage />
         </FormItem>
-        <FormMessage />
       </FormField>
 
       <FormField
@@ -200,8 +200,8 @@ const df = new DateFormatter('ru-RU', {
               </SelectItem>
             </SelectContent>
           </Select>
+          <FormMessage />
         </FormItem>
-        <FormMessage />
       </FormField>
       <Button :disabled="!(meta.dirty && meta.valid)">
         Сохранить

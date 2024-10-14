@@ -82,22 +82,28 @@ const requiredError = 'Это обязательное поле'
 
 const requestSchema = z.object({
   issuer: z.object({
-    id: z.string(),
-    name: z.string(),
-    certificateTypes: z.array(z.string()),
+    id: z.string({ required_error: requiredError }),
+    name: z.string({ required_error: requiredError }),
+    certificateTypes: z.array(z.string(), { required_error: requiredError }),
   }),
-  certificateType: z.string(),
+  certificateType: z.string({ required_error: requiredError }),
   message: z.string().max(256).optional(),
 })
 
 const isRequestDialogOpen = ref(false)
-const { values: requestValues, handleSubmit: handleSubmitRequest, setFieldValue: setRequestFieldValue, meta: requestMeta }
- = useForm({ validationSchema: toTypedSchema(requestSchema), initialValues: {} })
 
-const onSubmitRequest = handleSubmitRequest((_values) => {
+// const { values: requestValues, handleSubmit: handleSubmitRequest, setFieldValue: setRequestFieldValue, meta: requestMeta }
+//  = useForm({ validationSchema: toTypedSchema(requestSchema), initialValues: {} })
+
+// const onSubmitRequest = handleSubmitRequest((_values) => {
+//   toast({ title: 'Запрос отправлен', variant: 'default', duration: 1000 })
+//   isRequestDialogOpen.value = false
+// })
+
+const onSubmitRequest = (_values: z.infer<typeof requestSchema>): void => {
   toast({ title: 'Запрос отправлен', variant: 'default', duration: 1000 })
   isRequestDialogOpen.value = false
-})
+}
 
 const createSchema = z.object({
   title: z.string({ message: requiredError }).min(1).max(256),
@@ -126,105 +132,119 @@ const onSubmitCreate = handleSubmitCreate((values) => {
       Сертификаты
     </h1>
     <div class="flex gap-x-4">
-      <Dialog v-model:open="isRequestDialogOpen">
-        <DialogTrigger :as-child="true">
-          <Button>
-            Запросить
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Запросить сертификат</DialogTitle>
-            <VisuallyHidden>
-              <DialogDescription>Запросить сертификат</DialogDescription>
-            </VisuallyHidden>
-          </DialogHeader>
-          <form
-            class="flex flex-col gap-y-4"
-            @submit.prevent="onSubmitRequest"
-          >
-            <FormField
-              name="issuer"
-            >
-              <FormItem>
-                <FormLabel>Выберете эмитента</FormLabel>
-                <Select
-                  :model-value="requestValues.issuer?.id"
-                  @update:model-value="(id) => {
-                    const issuer = issuers.find(is => is.id === id)
-                    setRequestFieldValue('issuer', issuer)
-                    setRequestFieldValue('issuer.id', issuer?.id)
-                    setRequestFieldValue('issuer.name', issuer?.name)
-                    setRequestFieldValue('issuer.certificateTypes', issuer?.certificateTypes)
-
-                    setRequestFieldValue('certificateType', undefined, false)
-                  }"
-                >
-                  <SelectTrigger>
-                    <FormControl>
-                      <SelectValue />
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem
-                        v-for="issuer in issuers"
-                        :key="issuer.id"
-                        :value="issuer.id"
-                      >
-                        {{ issuer.name }} <span class="ml-2 text-sm text-slate-400">{{ issuer.id }}</span>
-                      </SelectItem>
-                    </SelectContent>
-                  </SelectTrigger>
-                </Select>
-              </FormItem>
-              <FormMessage />
-            </FormField>
-            <FormField
-              v-if="requestValues.issuer?.certificateTypes"
-              v-slot="{ componentField }"
-              name="certificateType"
-            >
-              <FormItem>
-                <FormLabel>Выберете тип сертификата</FormLabel>
-                <Select v-bind="componentField">
-                  <SelectTrigger>
-                    <FormControl>
-                      <SelectValue />
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem
-                        v-for="type in requestValues.issuer.certificateTypes"
-                        :key="type"
-                        :value="type"
-                      >
-                        {{ type }}
-                      </SelectItem>
-                    </SelectContent>
-                  </SelectTrigger>
-                </Select>
-              </FormItem>
-              <FormMessage />
-            </FormField>
-            <FormField
-              v-slot="{ componentField }"
-              name="message"
-            >
-              <FormItem>
-                <FormLabel>Сообщение для эмитента</FormLabel>
-                <FormControl>
-                  <Input v-bind="componentField" />
-                </FormControl>
-              </FormItem>
-              <FormMessage />
-            </FormField>
-            <Button
-              :disabled="!(requestMeta.dirty && requestMeta.valid)"
-              type="submit"
-            >
-              Отправить запрос
+      <Form
+        v-slot="{ submitForm, meta: requestMeta, values: requestValues, setFieldValue: setRequestFieldValue, resetForm: resetRequestForm }"
+        as="div"
+        :validation-schema="toTypedSchema(requestSchema)"
+        @submit="onSubmitRequest"
+      >
+        <Dialog
+          :model-value:open="isRequestDialogOpen"
+          @update:open="(isOpen) => {
+            isRequestDialogOpen = isOpen
+            resetRequestForm()
+          }"
+        >
+          <DialogTrigger :as-child="true">
+            <Button>
+              Запросить
             </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Запросить сертификат</DialogTitle>
+              <VisuallyHidden>
+                <DialogDescription>Запросить сертификат</DialogDescription>
+              </VisuallyHidden>
+            </DialogHeader>
+            <form
+              class="flex flex-col gap-y-4"
+              @submit.prevent="submitForm"
+            >
+              <FormField
+                name="issuer"
+              >
+                <FormItem>
+                  <FormLabel>Выберете эмитента</FormLabel>
+                  <Select
+                    :model-value="requestValues.issuer?.id"
+                    @update:model-value="(id) => {
+                      const issuer = issuers.find(is => is.id === id)
+                      setRequestFieldValue('issuer', issuer)
+                      setRequestFieldValue('issuer.id', issuer?.id)
+                      setRequestFieldValue('issuer.name', issuer?.name)
+                      setRequestFieldValue('issuer.certificateTypes', issuer?.certificateTypes)
+
+                      setRequestFieldValue('certificateType', undefined, false)
+                    }"
+                  >
+                    <SelectTrigger>
+                      <FormControl>
+                        <SelectValue />
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem
+                          v-for="issuer in issuers"
+                          :key="issuer.id"
+                          :value="issuer.id"
+                        >
+                          {{ issuer.name }} <span class="ml-2 text-sm text-slate-400">{{ issuer.id }}</span>
+                        </SelectItem>
+                      </SelectContent>
+                    </SelectTrigger>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              </FormField>
+
+              <FormField
+                v-if="requestValues.issuer?.certificateTypes"
+                v-slot="{ componentField }"
+                name="certificateType"
+              >
+                <FormItem>
+                  <FormLabel>Выберете тип сертификата</FormLabel>
+                  <Select v-bind="componentField">
+                    <SelectTrigger>
+                      <FormControl>
+                        <SelectValue />
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem
+                          v-for="type in requestValues.issuer.certificateTypes"
+                          :key="type"
+                          :value="type"
+                        >
+                          {{ type }}
+                        </SelectItem>
+                      </SelectContent>
+                    </SelectTrigger>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              </FormField>
+              <FormField
+                v-slot="{ componentField }"
+                name="message"
+              >
+                <FormItem>
+                  <FormLabel>Сообщение для эмитента</FormLabel>
+                  <FormControl>
+                    <Input v-bind="componentField" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              </FormField>
+              <Button
+                :disabled="!(requestMeta.dirty && requestMeta.valid)"
+                type="submit"
+              >
+                Отправить запрос
+              </Button>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </Form>
 
       <Dialog v-model:open="isCreateDialogOpen">
         <DialogTrigger :as-child="true">
