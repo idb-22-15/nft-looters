@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Avatar, AvatarImage } from '~/components/ui/avatar'
-import { Crown, Award, FileBadge2, ShieldCheck, FileText, Settings, PanelLeft } from 'lucide-vue-next'
+import { Crown, Award, FileBadge2, ShieldCheck, FileText, Settings, PanelLeft, BriefcaseBusiness } from 'lucide-vue-next'
 import type { Component } from 'vue'
 import { useToggle } from '@vueuse/core'
 import { cn } from '~/lib/utils'
+import { useUserStore } from '~/src/shared/model/user'
 
 defineSlots<{
   default: (props: unknown) => unknown
@@ -14,7 +15,20 @@ type NavItem = {
   title: string
   url: string
 }
+const userStore = useUserStore()
+const { user } = storeToRefs(userStore)
+// userStore.load()
+useAsyncData('load', async () => {
+  await userStore.load()
+  return true
+})
+
 const navItems: NavItem[] = [
+  {
+    icon: BriefcaseBusiness,
+    title: 'Организация',
+    url: '/profile/organization',
+  },
   {
     icon: Crown,
     title: 'Навыки',
@@ -75,12 +89,12 @@ const layoutColumns = computed(() => `${asideWidth.value} 1fr`)
           <AvatarImage
             alt="avatar"
             class="w-7 h-7 object-cover"
-            src="https://github.com/radix-vue.png"
+            :src="user?.avatar ?? ''"
           />
         </Avatar>
         <span
           :class="cn(['text-ellipsis text-nowrap overflow-hidden opacity-100 transition-all', !isAsideOpen && 'hidden invisible opacity-0'])"
-        >Матвей Оченьдлиннофамильный</span>
+        >{{ user?.firstName }} {{ user?.lastName }}</span>
       </NuxtLink>
       <nav>
         <ul class="flex flex-col gap-y-1 px-4">

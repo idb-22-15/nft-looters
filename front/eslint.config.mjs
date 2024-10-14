@@ -23,11 +23,12 @@ export default withNuxt(
       //   fixMixedExportsWithInlineTypeSpecifier: false,
       // }],
       // '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/explicit-function-return-type': ['error', {
-        allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-        allowTypedFunctionExpressions: true,
-        allowExpressions: true,
-      }],
+
+      // '@typescript-eslint/explicit-function-return-type': ['error', {
+      //   allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+      //   allowTypedFunctionExpressions: true,
+      //   allowExpressions: true,
+      // }],
       '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
       '@typescript-eslint/no-unused-vars': [
         'error',

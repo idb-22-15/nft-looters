@@ -14,17 +14,19 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { FormField, FormControl, FormMessage } from '~/components/ui/form'
 import { VisuallyHidden } from 'radix-vue'
+import { useAuthenticatedUser, useUserStore, type Gender } from '~/src/shared/model/user'
 
 defineOptions({
   name: 'ProfilePage',
 })
 
-const photos = [
+const mockPhotos = [
   'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.lifestyleasia.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2022%2F01%2F14164044%2Fmutant-975x1024-1.jpeg&f=1&nofb=1&ipt=e196d1beae57e458b3ab8da9a2bd7a8d4a9792a4be0fb884a4f094a37ac81549&ipo=images',
   'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffile%2Fnft-pictures-sxq84lbki4w5hy31.jpg&f=1&nofb=1&ipt=409fd3715613dbb1ecdf55a1794a43dde1d89ff3d0e1a5d0848b00e5ea6082ee&ipo=images',
 ]
 
-type Gender = 'male' | 'female'
+const userStore = useUserStore()
+const user = useAuthenticatedUser()
 
 const errorRequired = 'Это обязательное поле'
 
@@ -36,14 +38,6 @@ const schema = z.object({
   gender: z.enum(['male', 'female'], { message: errorRequired }),
 })
 
-const user = ref({
-  avatar: 'https://sun9-48.userapi.com/impg/zPd7y71aGVlopDXhvJ9PA46bIpmsHiB1C0wfrA/1HOPPr6-mOA.jpg?size=1600x900&quality=96&sign=20d8367121e2ff6a41e704b51d378cc3&type=album',
-  firstName: 'Матвей',
-  lastName: 'Оченьдлиннофамильный',
-  gender: 'male' as Gender,
-  birthday: new CalendarDate(2000, 1, 1),
-})
-
 const { values, handleSubmit, setFieldValue, meta } = useForm({ validationSchema: toTypedSchema(schema), initialValues: {
   avatar: user.value.avatar,
   firstName: user.value.firstName,
@@ -52,15 +46,13 @@ const { values, handleSubmit, setFieldValue, meta } = useForm({ validationSchema
   gender: user.value.gender,
 } })
 
-// const birthday = computed<DateValue | undefined>({
-//   get: () => values.birthday && parseDate(values.birthday.toISOString().slice(0, 10)),
-//   set: value => setFieldValue('birthday', value && toDate(value)),
-// })
-
 const onSubmit = handleSubmit((values) => {
-  user.value.firstName = values.firstName
-  user.value.lastName = values.lastName
-  user.value.gender = values.gender
+  userStore.update({ ...user.value,
+    firstName: values.firstName,
+    lastName: values.lastName,
+    gender: values.gender,
+    birthday: values.birthday,
+  })
 })
 
 const df = new DateFormatter('ru-RU', {
@@ -71,7 +63,7 @@ const df = new DateFormatter('ru-RU', {
 <template>
   <div class="mx-8 mt-6 mb-8">
     <h1 class="text-4xl font-semibold">
-      Личный кабинет Hello wowow
+      Личный кабинет
     </h1>
     <div class="grid items-center mt-4 grid-cols-[max-content_1fr] gap-x-4">
       <div class="">
@@ -100,7 +92,7 @@ const df = new DateFormatter('ru-RU', {
             </VisuallyHidden>
             <div class="grid grid-cols-5 gap-4">
               <img
-                v-for="photo in photos"
+                v-for="photo in mockPhotos"
                 :key="photo"
                 alt=""
                 class="cursor-pointer rounded-lg aspect-square object-cover"

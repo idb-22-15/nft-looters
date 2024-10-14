@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { DateFormatter } from '@internationalized/date'
-import { Check } from 'lucide-vue-next'
+import { Check, ShieldCheck, Shield } from 'lucide-vue-next'
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '~/components/ui/dialog'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '~/components/ui/form'
 import { Button } from '~/components/ui/button'
 import { VisuallyHidden } from 'radix-vue'
-
 import { z } from 'zod'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -18,6 +17,9 @@ type Certificate = {
   issuedDate: Date
   issuerId: string
   verified: boolean
+  image?: {
+    url: string
+  }
 }
 
 const mockCertificates: Certificate[] = [
@@ -27,6 +29,9 @@ const mockCertificates: Certificate[] = [
     issuedDate: new Date('2023-03-08'),
     issuerId: 'ISACA',
     verified: true,
+    image: {
+      url: 'https://calendarbox.ru/wp-content/uploads/2019/05/shablon-sertificata-02.jpg',
+    },
   },
   {
     id: '2',
@@ -41,6 +46,9 @@ const mockCertificates: Certificate[] = [
     issuedDate: new Date('2021-10-01'),
     issuerId: 'EFQM',
     verified: false,
+    image: {
+      url: 'https://static.vecteezy.com/system/resources/previews/000/636/160/original/portrait-luxury-certificate-template-with-elegant-border-frame-diploma-design-for-graduation-or-completion-vector.jpg',
+    },
   },
   {
     id: '4',
@@ -48,6 +56,9 @@ const mockCertificates: Certificate[] = [
     issuedDate: new Date('2020-06-30'),
     issuerId: 'Университет',
     verified: true,
+    image: {
+      url: 'https://www.mos-elektrika.ru/wp-content/uploads/2016/last_certificate/sert4.jpg',
+    },
   },
   {
     id: '5',
@@ -81,17 +92,16 @@ type Issuer = {
 const requiredError = 'Это обязательное поле'
 
 const requestSchema = z.object({
-  issuer: z.object({
-    id: z.string({ required_error: requiredError }),
-    name: z.string({ required_error: requiredError }),
-    certificateTypes: z.array(z.string(), { required_error: requiredError }),
-  }),
+  issuerId: z.string({ message: requiredError }),
   certificateType: z.string({ required_error: requiredError }),
   message: z.string().max(256).optional(),
 })
 
 const isRequestDialogOpen = ref(false)
 
+const getIssuerById = (id: string): Issuer | undefined => {
+  return issuers.value.find(issuer => issuer.id === id)
+}
 // const { values: requestValues, handleSubmit: handleSubmitRequest, setFieldValue: setRequestFieldValue, meta: requestMeta }
 //  = useForm({ validationSchema: toTypedSchema(requestSchema), initialValues: {} })
 
@@ -133,16 +143,15 @@ const onSubmitCreate = handleSubmitCreate((values) => {
     </h1>
     <div class="flex gap-x-4">
       <Form
-        v-slot="{ submitForm, meta: requestMeta, values: requestValues, setFieldValue: setRequestFieldValue, resetForm: resetRequestForm }"
-        as="div"
+        v-slot="{ handleSubmit, meta: requestMeta, values: requestValues, setFieldValue: setRequestFieldValue, resetForm: resetRequestForm }"
+        as=""
         :validation-schema="toTypedSchema(requestSchema)"
-        @submit="onSubmitRequest"
       >
         <Dialog
           :model-value:open="isRequestDialogOpen"
           @update:open="(isOpen) => {
             isRequestDialogOpen = isOpen
-            resetRequestForm()
+            if (!isOpen) resetRequestForm()
           }"
         >
           <DialogTrigger :as-child="true">
@@ -159,22 +168,17 @@ const onSubmitCreate = handleSubmitCreate((values) => {
             </DialogHeader>
             <form
               class="flex flex-col gap-y-4"
-              @submit.prevent="submitForm"
+              @submit.prevent="handleSubmit(onSubmitRequest as any)"
             >
               <FormField
-                name="issuer"
+                name="issuerId"
               >
                 <FormItem>
                   <FormLabel>Выберете эмитента</FormLabel>
                   <Select
-                    :model-value="requestValues.issuer?.id"
+                    :model-value="requestValues.issuerId"
                     @update:model-value="(id) => {
-                      const issuer = issuers.find(is => is.id === id)
-                      setRequestFieldValue('issuer', issuer)
-                      setRequestFieldValue('issuer.id', issuer?.id)
-                      setRequestFieldValue('issuer.name', issuer?.name)
-                      setRequestFieldValue('issuer.certificateTypes', issuer?.certificateTypes)
-
+                      setRequestFieldValue('issuerId', id)
                       setRequestFieldValue('certificateType', undefined, false)
                     }"
                   >
@@ -198,11 +202,10 @@ const onSubmitCreate = handleSubmitCreate((values) => {
               </FormField>
 
               <FormField
-                v-if="requestValues.issuer?.certificateTypes"
                 v-slot="{ componentField }"
                 name="certificateType"
               >
-                <FormItem>
+                <FormItem v-if="requestValues.issuerId">
                   <FormLabel>Выберете тип сертификата</FormLabel>
                   <Select v-bind="componentField">
                     <SelectTrigger>
@@ -211,7 +214,7 @@ const onSubmitCreate = handleSubmitCreate((values) => {
                       </FormControl>
                       <SelectContent>
                         <SelectItem
-                          v-for="type in requestValues.issuer.certificateTypes"
+                          v-for="type in requestValues.issuerId ? getIssuerById(requestValues.issuerId)?.certificateTypes ?? [] : []"
                           :key="type"
                           :value="type"
                         >
@@ -292,9 +295,53 @@ const onSubmitCreate = handleSubmitCreate((values) => {
       <div
         v-for="certificate in certificates"
         :key="certificate.id"
-        class="flex flex-col gap-y-2 p-4 bg-slate-50 rounded-lg"
+        class="flex flex-col p-4 bg-slate-50 rounded-lg"
       >
-        <span>{{ certificate.title }}</span>
+        <div class="">
+          <Dialog v-if="certificate.image">
+            <DialogTrigger>
+              <img
+
+                :alt="certificate.title"
+                class="bg-slate-200 w-full object-cover aspect-video rounded-lg"
+                :src="certificate.image?.url"
+              >
+            </DialogTrigger>
+            <DialogContent>
+              <VisuallyHidden>
+                <DialogHeader>
+                  <DialogTitle>Просмотр фотографии</DialogTitle>
+                  <DialogDescription>Просмотр фотографии</DialogDescription>
+                </DialogHeader>
+              </VisuallyHidden>
+              <div class="max-w-[90vw] max-h-[90svh]">
+                <img
+                  :alt="certificate.title"
+                  class="w-max object-contain rounded-lg"
+                  :src="certificate.image.url"
+                >
+              </div>
+            </DialogContent>
+          </Dialog>
+          <div
+            v-else
+            class="flex justify-center items-center bg-slate-200 w-full h-full aspect-video rounded-lg"
+          >
+            <ShieldCheck
+              v-if="certificate.verified"
+              class="text-slate-500"
+              :size="100"
+              :stroke-width="0.7"
+            />
+            <Shield
+              v-else
+              class="text-slate-500"
+              :size="100"
+              :stroke-width="0.7"
+            />
+          </div>
+        </div>
+        <span class="font-semibold mt-4">{{ certificate.title }}</span>
         <div class="flex justify-between">
           <span class="font-light">{{ df.format(certificate.issuedDate) }}</span>
           <TooltipProvider v-if="certificate.verified">
