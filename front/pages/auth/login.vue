@@ -34,36 +34,66 @@ const useSigner = () => {
 const { signer, login } = useSigner()
 
 const schema = z.object({
-  login: z.string().min(1),
+  email: z.string().email(),
+  password: z.string().min(6).max(256),
 })
 
-const { values, handleSubmit } = useForm({ validationSchema: toTypedSchema(schema) })
+const { values, handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(schema) })
 const onSubmit = handleSubmit((values) => {
   console.log(values)
   login()
 })
+defineField('password', { validateOnModelUpdate: false })
 </script>
 
 <template>
   <div class="mx-8 mt-6 mb-8">
     {{ signer }}
-    <h1>Вход</h1>
-    <form @submit.prevent="onSubmit">
+    <h1 class="text-4xl font-semibold">
+      Вход
+    </h1>
+    <form
+      class="mt-4 flex max-w-3xl flex-col gap-y-4"
+      @submit.prevent="onSubmit"
+    >
       <FormField
         v-slot="{ componentField }"
-        name="login"
+        name="email"
       >
         <FormItem>
-          <FormLabel>Логин</FormLabel>
+          <FormLabel>Email</FormLabel>
           <FormControl>
             <Input v-bind="componentField" />
           </FormControl>
           <FormMessage />
         </FormItem>
       </FormField>
-      <Button type="submit">
+
+      <FormField
+        v-slot="{ componentField }"
+        name="password"
+      >
+        <FormItem>
+          <FormLabel>Пароль</FormLabel>
+          <FormControl>
+            <Input
+              type="password"
+              v-bind="componentField"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <Button
+        :disabled="!(meta.dirty && meta.valid)"
+        type="submit"
+      >
         Войти
       </Button>
+      <span>Нет аккаунта? <NuxtLink
+        class="font-semibold"
+        to="/auth/register"
+      >Зарегистрироваться</NuxtLink></span>
     </form>
   </div>
 </template>
