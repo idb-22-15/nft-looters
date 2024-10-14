@@ -1,0 +1,12 @@
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\bin\Debug\net8.0\back.Core.deps.json
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\bin\Debug\net8.0\back.Core.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\bin\Debug\net8.0\back.Core.pdb
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.AssemblyInfoInputs.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.AssemblyInfo.cs
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.csproj.CoreCompileInputs.cache
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.sourcelink.json
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\refint\back.Core.dll
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\back.Core.pdb
+C:\Users\ilyap\source\repos\nft-looters\back\back.Core\obj\Debug\net8.0\ref\back.Core.dll
