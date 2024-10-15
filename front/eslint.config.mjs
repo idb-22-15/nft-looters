@@ -20,6 +20,8 @@ export default withNuxt(
     rules: {
       'perfectionist/sort-imports': ['error', { type: 'alphabetical' }],
       'perfectionist/sort-named-imports': ['error', { type: 'alphabetical', groupKind: 'values-first' }],
+      'perfectionist/sort-exports': ['error'],
+      'perfectionist/sort-named-exports': ['error', { groupKind: 'values-first' }],
       'import/order': 'off',
       // 'import/order': [
       //   'error',
