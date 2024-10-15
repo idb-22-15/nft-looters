@@ -3,11 +3,11 @@ import { Check } from 'lucide-vue-next'
 import {
   SelectItem,
   SelectItemIndicator,
-  type SelectItemProps,
   SelectItemText,
   useForwardProps,
+  type SelectItemProps,
 } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { computed, type HTMLAttributes } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 

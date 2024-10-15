@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { CalendarHeadCell, type CalendarHeadCellProps, useForwardProps } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { CalendarHeadCell, useForwardProps, type CalendarHeadCellProps } from 'radix-vue'
+import { computed, type HTMLAttributes } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 

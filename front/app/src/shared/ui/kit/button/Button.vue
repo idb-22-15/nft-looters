@@ -5,7 +5,7 @@ import { Primitive, type PrimitiveProps } from 'radix-vue'
 
 import { cn } from '~/src/shared/lib/utils'
 
-import { type ButtonVariants, buttonVariants } from '.'
+import { buttonVariants, type ButtonVariants } from '.'
 
 type Props = {
   variant?: ButtonVariants['variant']

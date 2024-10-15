@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ChevronRight } from 'lucide-vue-next'
-import { CalendarNext, type CalendarNextProps, useForwardProps } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { CalendarNext, useForwardProps, type CalendarNextProps } from 'radix-vue'
+import { computed, type HTMLAttributes } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 import { buttonVariants } from '~/src/shared/ui/kit/button'

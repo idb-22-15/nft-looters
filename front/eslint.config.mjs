@@ -18,6 +18,8 @@ export default withNuxt(
       perfectionist,
     },
     rules: {
+      'perfectionist/sort-imports': ['error', { type: 'alphabetical' }],
+      'perfectionist/sort-named-imports': ['error', { type: 'alphabetical', groupKind: 'values-first' }],
       'import/order': 'off',
       // 'import/order': [
       //   'error',
@@ -72,7 +74,6 @@ export default withNuxt(
       '@typescript-eslint/consistent-generic-constructors': ['error', 'constructor'],
       '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-      'perfectionist/sort-imports': ['error', { order: 'asc', type: 'alphabetical' }],
       // '@typescript-eslint/consistent-type-exports': ['error', {
       //   fixMixedExportsWithInlineTypeSpecifier: false,
       // }],
@@ -96,8 +97,6 @@ export default withNuxt(
           varsIgnorePattern: '^_',
         },
       ],
-
-      // 'perfectionist/sort-vue-attributes': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/attributes-order': ['error', {
         alphabetical: true,

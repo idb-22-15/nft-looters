@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ChevronUp } from 'lucide-vue-next'
-import { SelectScrollUpButton, type SelectScrollUpButtonProps, useForwardProps } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { SelectScrollUpButton, useForwardProps, type SelectScrollUpButtonProps } from 'radix-vue'
+import { computed, type HTMLAttributes } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { DateFormatter } from '@internationalized/date'
 import { toTypedSchema } from '@vee-validate/zod'
-import { Check, ShieldCheck, Shield } from 'lucide-vue-next'
+import { Check, Shield, ShieldCheck } from 'lucide-vue-next'
 import { VisuallyHidden } from 'radix-vue'
 import { useForm } from 'vee-validate'
 import { z } from 'zod'
 
 import { Button } from '~/src/shared/ui/kit/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '~/src/shared/ui/kit/dialog'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '~/src/shared/ui/kit/form'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '~/src/shared/ui/kit/dialog'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
-import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from '~/src/shared/ui/kit/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/src/shared/ui/kit/select'
 import { useToast } from '~/src/shared/ui/kit/toast'
-import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/src/shared/ui/kit/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/src/shared/ui/kit/tooltip'
 
 import type { Certificate, Issuer } from '../types'
 

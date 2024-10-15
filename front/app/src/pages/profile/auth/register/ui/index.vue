@@ -5,7 +5,7 @@ import { z } from 'zod'
 
 import { validationErrors } from '~/src/shared/config'
 import { Button } from '~/src/shared/ui/kit/button'
-import { FormField, FormControl, FormLabel, FormItem, FormMessage } from '~/src/shared/ui/kit/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
 
 const schema = z.object({
