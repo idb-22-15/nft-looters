@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "x00vgKV+dQtaEZ/ZJ1njoOuw1Xo9YJeecqBHAx6ZTY5KDHtRtyJA/YjnI5RRJ95ElXpDizS99cBz9aB5yl5I5Q==",
+  "dgSpecHash": "fIxgdyyBbiIrBEI9fsojisI52FFFlTDMJtrzJy55wTSY7Ra4AMZnOdQSuH0vP0ztYvM6lZ1OVYL6DBA9B7Ujcw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\back.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ilyap\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ilyap\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ilyap\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\ilyap\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

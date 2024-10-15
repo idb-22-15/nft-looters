@@ -10,7 +10,7 @@ namespace back.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {
-        DbSet<UserEntity> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

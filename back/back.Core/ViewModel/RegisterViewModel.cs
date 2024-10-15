@@ -13,5 +13,10 @@ namespace back.Core.ViewModel
         public string password { get; set; }
 
         public string repeatPassword { get; set; }
+
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
+
     }
 }
