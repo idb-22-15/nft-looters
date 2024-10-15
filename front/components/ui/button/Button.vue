@@ -2,13 +2,13 @@
 import type { HTMLAttributes } from 'vue'
 import { Primitive, type PrimitiveProps } from 'radix-vue'
 import { type ButtonVariants, buttonVariants } from '.'
-import { cn } from '~/lib/utils'
+import { cn } from '~/src/shared/lib/utils'
 
-interface Props extends PrimitiveProps {
+type Props = {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
   class?: HTMLAttributes['class']
-}
+} & PrimitiveProps
 
 const props = withDefaults(defineProps<Props>(), {
   as: 'button',

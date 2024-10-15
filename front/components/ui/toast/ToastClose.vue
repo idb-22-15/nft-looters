@@ -2,7 +2,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastClose, type ToastCloseProps } from 'radix-vue'
 import { X } from 'lucide-vue-next'
-import { cn } from '~/lib/utils'
+import { cn } from '~/src/shared/lib/utils'
 
 const props = defineProps<ToastCloseProps & {
   class?: HTMLAttributes['class']

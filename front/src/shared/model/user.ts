@@ -21,6 +21,10 @@ export type UserOrganization = {
 export const useUserStore = defineStore('user', () => {
   const user = ref<User | null>(null)
 
+  watch(user, () => {
+    if (user.value === null) navigateTo('/auth/login')
+  })
+
   const load = async () => {
     console.log('load user')
     user.value = mockUser
@@ -28,6 +32,12 @@ export const useUserStore = defineStore('user', () => {
 
   const update = async (newUser: User) => {
     user.value = newUser
+  }
+
+  const exitOrganization = async () => {
+    if (!user.value) return
+
+    user.value.organization = undefined
   }
 
   const login = async (_password: string) => {
@@ -39,7 +49,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   return {
-    user, load, update, login, logout,
+    user, load, update, login, logout, exitOrganization,
   }
 })
 

@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from '~/components/ui/avatar'
 import { Crown, Award, FileBadge2, ShieldCheck, FileText, Settings, PanelLeft, BriefcaseBusiness } from 'lucide-vue-next'
 import type { Component } from 'vue'
 import { useToggle } from '@vueuse/core'
-import { cn } from '~/lib/utils'
+import { cn } from '~/src/shared/lib/utils'
 import { useUserStore } from '~/src/shared/model/user'
 
 defineSlots<{
@@ -83,7 +83,7 @@ const layoutColumns = computed(() => `${asideWidth.value} 1fr`)
       <NuxtLink
         class="flex gap-x-6 hover:bg-slate-200 items-center py-2.5 mx-4 transition-all rounded-lg"
         :class="[isAsideOpen ? 'px-4' : 'w-min px-2.5']"
-        to="/"
+        to="/profile"
       >
         <Avatar class="w-7 h-7">
           <AvatarImage

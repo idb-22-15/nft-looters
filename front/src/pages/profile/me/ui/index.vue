@@ -8,13 +8,15 @@ import { toDate } from 'radix-vue/date'
 import { CalendarDate, DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
 import { Popover, PopoverTrigger, PopoverContent } from '~/components/ui/popover'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import { cn } from '~/lib/utils'
+import { cn } from '~/src/shared/lib/utils'
 import { z } from 'zod'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { FormField, FormControl, FormMessage } from '~/components/ui/form'
 import { VisuallyHidden } from 'radix-vue'
 import { useAuthenticatedUser, useUserStore, type Gender } from '~/src/shared/model/user'
+
+import MetaMaskIcon from './MetaMaskIcon.vue'
 
 defineOptions({
   name: 'ProfilePage',
@@ -62,7 +64,7 @@ const df = new DateFormatter('ru-RU', {
 
 <template>
   <div class="mx-8 mt-6 mb-8">
-    <h1 class="text-4xl font-semibold">
+    <h1 class="text-4xl font-semibold hidden">
       Личный кабинет
     </h1>
     <div class="grid items-center mt-4 grid-cols-[max-content_1fr] gap-x-4">
@@ -195,9 +197,29 @@ const df = new DateFormatter('ru-RU', {
           <FormMessage />
         </FormItem>
       </FormField>
-      <Button :disabled="!(meta.dirty && meta.valid)">
+      <Button
+        :disabled="!(meta.dirty && meta.valid)"
+        type="submit"
+      >
         Сохранить
       </Button>
+
+      <Button
+        class="mt-0 w-full flex items-center"
+        type="button"
+        variant="secondary"
+      >
+        Подключить <MetaMaskIcon class="h-10" />
+      </Button>
     </form>
+
+    <Button
+      class="mt-8"
+      type="button"
+      variant="destructiveSecondary"
+      @click="userStore.logout()"
+    >
+      Выйти из аккаунта
+    </Button>
   </div>
 </template>
