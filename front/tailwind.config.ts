@@ -26,7 +26,7 @@ export const screenBreakpoints = {
 export type ScreenSize = keyof (typeof screens)
 
 export default {
-  content: ['./src/**/*.{js,ts,vue}'],
+  content: ['./app/**/*.{js,ts,vue}'],
   darkMode: ['class'],
   plugins: [animate],
   safelist: ['dark'],

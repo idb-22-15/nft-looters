@@ -22,6 +22,9 @@ export default defineNuxtConfig({
   // shadcn: {
   //   componentDir: './src/shared/ui',
   // },
+  future: {
+    compatibilityVersion: 4,
+  },
   eslint: {
     config: {
       stylistic: true,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import '~/assets/css/tailwind.css'
-import { Toaster } from './src/shared/ui/kit/toast'
+import '~/src/shared/assets/css/tailwind.css'
+import { Toaster } from '~/src/shared/ui/kit/toast'
 </script>
 
 <template>
