@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { PanelLeft } from 'lucide-vue-next'
 import { useToggle } from '@vueuse/core'
+import { PanelLeft } from 'lucide-vue-next'
 
-import { Avatar, AvatarImage } from '~/src/shared/ui/kit/avatar'
 import { cn } from '~/src/shared/lib/utils'
 import { useUserStore } from '~/src/shared/model/user'
+import { Avatar, AvatarImage } from '~/src/shared/ui/kit/avatar'
 
 import { navItems } from '../config'
 

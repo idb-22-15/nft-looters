@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { DateFormatter } from '@internationalized/date'
+import { toTypedSchema } from '@vee-validate/zod'
 import { Check, ShieldCheck, Shield } from 'lucide-vue-next'
 import { VisuallyHidden } from 'radix-vue'
-import { z } from 'zod'
 import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
+import { z } from 'zod'
 
-import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/src/shared/ui/kit/tooltip'
+import { Button } from '~/src/shared/ui/kit/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '~/src/shared/ui/kit/dialog'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '~/src/shared/ui/kit/form'
-import { Button } from '~/src/shared/ui/kit/button'
-import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from '~/src/shared/ui/kit/select'
 import { Input } from '~/src/shared/ui/kit/input'
+import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from '~/src/shared/ui/kit/select'
 import { useToast } from '~/src/shared/ui/kit/toast'
+import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/src/shared/ui/kit/tooltip'
+
+import type { Certificate, Issuer } from '../types'
 
 import { mockCertificates, mockIssuers } from '../__mocks__'
-import type { Certificate, Issuer } from '../types'
 
 const certificates = ref(mockCertificates)
 

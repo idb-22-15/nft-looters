@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useAuthenticatedUser } from '~/src/shared/model/user'
 import { cn } from '~/src/shared/lib/utils'
-import { buttonVariants, Button } from '~/src/shared/ui/kit/button'
+import { useAuthenticatedUser } from '~/src/shared/model/user'
 import { Avatar, AvatarFallback, AvatarImage } from '~/src/shared/ui/kit/avatar'
+import { buttonVariants, Button } from '~/src/shared/ui/kit/button'
 import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
 
 defineSlots<{

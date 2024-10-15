@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type HTMLAttributes, provide } from 'vue'
 import { useId } from 'radix-vue'
+import { type HTMLAttributes, provide } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 

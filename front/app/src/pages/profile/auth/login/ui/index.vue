@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { toTypedSchema } from '@vee-validate/zod'
+import { ethers, type Provider, type Signer } from 'ethers'
 import { useForm } from 'vee-validate'
 import { z } from 'zod'
-import { ethers, type Provider, type Signer } from 'ethers'
 
 import { Button } from '~/src/shared/ui/kit/button'
-import { Input } from '~/src/shared/ui/kit/input'
 import { FormField, FormControl, FormLabel, FormItem, FormMessage } from '~/src/shared/ui/kit/form'
+import { Input } from '~/src/shared/ui/kit/input'
 
 const useSigner = () => {
   const provider = ref<Provider | null>(null)

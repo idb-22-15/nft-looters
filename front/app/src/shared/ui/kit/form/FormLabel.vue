@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { HTMLAttributes } from 'vue'
 import type { LabelProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
 
 import { cn } from '~/src/shared/lib/utils'
 import { Label } from '~/src/shared/ui/kit/label'

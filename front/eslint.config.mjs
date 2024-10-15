@@ -1,9 +1,10 @@
 // import antfu from '@antfu/eslint-config'
 import oxlint from 'eslint-plugin-oxlint'
+import perfectionist from 'eslint-plugin-perfectionist'
 
 // import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 // import tseslint from 'typescript-eslint'
-// import perfectionist from 'eslint-plugin-perfectionist'
+
 import { withNuxt } from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
@@ -13,60 +14,65 @@ export default withNuxt(
   //   rules: tseslint.configs.strict.at(-1).rules
   // },
   {
+    plugins: {
+      perfectionist,
+    },
     rules: {
-      'import/order': [
-        'error',
-        {
-          'groups': ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
-          'pathGroups': [
-            {
-              pattern: '~/shared/ui/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/layouts/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/pages/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/features/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/entities/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/shared/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '~/**',
-              group: 'internal',
-              position: 'before',
-            },
-          ],
-          'newlines-between': 'always',
-          'alphabetize': {
-            caseInsensitive: false,
-          },
-        },
-      ],
+      'import/order': 'off',
+      // 'import/order': [
+      //   'error',
+      //   {
+      //     'groups': ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
+      //     'pathGroups': [
+      //       {
+      //         pattern: '~/shared/ui/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/layouts/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/pages/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/features/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/entities/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/shared/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //       {
+      //         pattern: '~/**',
+      //         group: 'internal',
+      //         position: 'before',
+      //       },
+      //     ],
+      //     'newlines-between': 'always',
+      //     'alphabetize': {
+      //       caseInsensitive: false,
+      //     },
+      //   },
+      // ],
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': ['error', { default: 'array-simple', readonly: 'array-simple' }],
       '@typescript-eslint/method-signature-style': ['error', 'property'],
       '@typescript-eslint/consistent-generic-constructors': ['error', 'constructor'],
       '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      'perfectionist/sort-imports': ['error', { order: 'asc', type: 'alphabetical' }],
       // '@typescript-eslint/consistent-type-exports': ['error', {
       //   fixMixedExportsWithInlineTypeSpecifier: false,
       // }],
@@ -90,6 +96,7 @@ export default withNuxt(
           varsIgnorePattern: '^_',
         },
       ],
+
       // 'perfectionist/sort-vue-attributes': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/attributes-order': ['error', {

@@ -1,5 +1,6 @@
-import { computed, ref } from 'vue'
 import type { Component, VNode } from 'vue'
+
+import { computed, ref } from 'vue'
 
 import type { ToastProps } from '.'
 

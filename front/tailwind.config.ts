@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+
 import animate from 'tailwindcss-animate'
 import pkg from 'tailwindcss/defaultTheme'
 
@@ -31,7 +32,6 @@ export default {
   safelist: ['dark'],
 
   theme: {
-    screens,
     container: {
       center: true,
       padding: '0rem',
@@ -107,5 +107,6 @@ export default {
         },
       },
     },
+    screens,
   },
 } satisfies Config
