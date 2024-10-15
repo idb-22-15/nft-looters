@@ -38,7 +38,7 @@ const schema = z.object({
   password: z.string().min(6).max(256),
 })
 
-const { values, handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(schema) })
+const { handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(schema) })
 const onSubmit = handleSubmit((values) => {
   console.log(values)
   login()

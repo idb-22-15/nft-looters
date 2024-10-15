@@ -2,7 +2,6 @@
 import { useAuthenticatedUser } from '~/src/shared/model/user'
 import { cn } from '~/src/shared/lib/utils'
 import { buttonVariants } from '~/components/ui/button'
-import { FileText } from 'lucide-vue-next'
 
 defineSlots<{
   default: () => unknown

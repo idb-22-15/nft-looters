@@ -18,7 +18,7 @@ const schema = z.object({
     .max(256, { message: validationErrors.maxChars(256) }),
 }).refine(v => v.repeatPassword === v.password, { path: ['repeatPassword'], message: 'Пароли не совпадают' })
 
-const { values, handleSubmit, meta } = useForm({ validationSchema: toTypedSchema(schema) })
+const { handleSubmit, meta } = useForm({ validationSchema: toTypedSchema(schema) })
 const onSubmit = handleSubmit((values) => {
   console.log(values)
 })
