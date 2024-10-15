@@ -13,10 +13,19 @@
           "Swashbuckle.AspNetCore": "6.4.0",
           "back.Application": "1.0.0",
           "back.Core": "1.0.0",
-          "back.DataAccess": "1.0.0"
+          "back.DataAccess": "1.0.0",
+          "back.Infrastructure": "1.0.0"
         },
         "runtime": {
           "back.API.dll": {}
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -1280,6 +1289,14 @@
         "runtime": {
           "back.DataAccess.dll": {}
         }
+      },
+      "back.Infrastructure/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.3"
+        },
+        "runtime": {
+          "back.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -1288,6 +1305,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -2140,6 +2164,11 @@
       "sha512": ""
     },
     "back.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "back.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

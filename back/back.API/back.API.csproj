@@ -21,6 +21,7 @@
     <ProjectReference Include="..\back.Application\back.Application.csproj" />
     <ProjectReference Include="..\back.Core\back.Core.csproj" />
     <ProjectReference Include="..\back.DataAccess\back.DataAccess.csproj" />
+    <ProjectReference Include="..\back.Infrastructure\back.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
