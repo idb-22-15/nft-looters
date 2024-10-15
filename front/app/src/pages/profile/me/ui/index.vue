@@ -1,21 +1,23 @@
 <!-- eslint-disable vue/no-ref-object-reactivity-loss -->
 <script setup lang="ts">
+import { toDate } from 'radix-vue/date'
+import { CalendarDate, DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
+import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import { z } from 'zod'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { VisuallyHidden } from 'radix-vue'
+
 import { Button } from '~/src/shared/ui/kit/button'
 import { Input } from '~/src/shared/ui/kit/input'
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogDescription, DialogTitle } from '~/src/shared/ui/kit/dialog'
 import { Calendar } from '~/src/shared/ui/kit/calendar'
-import { toDate } from 'radix-vue/date'
-import { CalendarDate, DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
 import { Popover, PopoverTrigger, PopoverContent } from '~/src/shared/ui/kit/popover'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { cn } from '~/src/shared/lib/utils'
-import { z } from 'zod'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { FormField, FormControl, FormMessage, FormLabel, FormItem } from '~/src/shared/ui/kit/form'
-import { VisuallyHidden } from 'radix-vue'
 import { useAuthenticatedUser, useUserStore, type Gender } from '~/src/shared/model/user'
 import { Select, SelectItem, SelectContent, SelectValue, SelectTrigger } from '~/src/shared/ui/kit/select'
+
 import MetaMaskIcon from './MetaMaskIcon.vue'
 
 defineOptions({

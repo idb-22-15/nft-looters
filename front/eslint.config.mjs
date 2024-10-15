@@ -1,5 +1,6 @@
 // import antfu from '@antfu/eslint-config'
 import oxlint from 'eslint-plugin-oxlint'
+
 // import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 // import tseslint from 'typescript-eslint'
 // import perfectionist from 'eslint-plugin-perfectionist'
@@ -13,6 +14,53 @@ export default withNuxt(
   // },
   {
     rules: {
+      'import/order': [
+        'error',
+        {
+          'groups': ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
+          'pathGroups': [
+            {
+              pattern: '~/shared/ui/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/layouts/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/pages/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/features/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/entities/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/shared/**',
+              group: 'internal',
+              position: 'before',
+            },
+            {
+              pattern: '~/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          'newlines-between': 'always',
+          'alphabetize': {
+            caseInsensitive: false,
+          },
+        },
+      ],
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': ['error', { default: 'array-simple', readonly: 'array-simple' }],
       '@typescript-eslint/method-signature-style': ['error', 'property'],
@@ -42,8 +90,7 @@ export default withNuxt(
           varsIgnorePattern: '^_',
         },
       ],
-      'import/order': 'off',
-      'perfectionist/sort-vue-attributes': 'off',
+      // 'perfectionist/sort-vue-attributes': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/attributes-order': ['error', {
         alphabetical: true,

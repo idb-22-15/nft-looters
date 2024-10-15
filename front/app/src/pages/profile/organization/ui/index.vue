@@ -1,19 +1,22 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { VisuallyHidden } from 'radix-vue'
+import { useForm } from 'vee-validate'
+import { z } from 'zod'
+import { Construction } from 'lucide-vue-next'
+
 import { Input } from '~/src/shared/ui/kit/input'
 import { Button } from '~/src/shared/ui/kit/button'
 import { Textarea } from '~/src/shared/ui/kit/textarea'
 import { FormField, FormControl, FormLabel, FormItem, FormMessage } from '~/src/shared/ui/kit/form'
 import { Dialog, DialogContent, DialogHeader, DialogDescription, DialogTitle } from '~/src/shared/ui/kit/dialog'
 import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
-import { toTypedSchema } from '@vee-validate/zod'
-import { VisuallyHidden } from 'radix-vue'
-import { useForm } from 'vee-validate'
-import { z } from 'zod'
 import { validationErrors } from '~/src/shared/config'
 import { useAuthenticatedUser, useUserStore } from '~/src/shared/model/user'
-import { Construction } from 'lucide-vue-next'
-import { mockRecommendations } from '../__mocks__'
+
 import EmployeeCard from './EmployeeCard.vue'
+
+import { mockRecommendations } from '../__mocks__'
 
 const user = useAuthenticatedUser()
 const userStore = useUserStore()

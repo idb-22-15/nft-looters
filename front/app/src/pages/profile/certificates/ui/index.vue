@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { DateFormatter } from '@internationalized/date'
 import { Check, ShieldCheck, Shield } from 'lucide-vue-next'
+import { VisuallyHidden } from 'radix-vue'
+import { z } from 'zod'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '~/src/shared/ui/kit/tooltip'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '~/src/shared/ui/kit/dialog'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '~/src/shared/ui/kit/form'
 import { Button } from '~/src/shared/ui/kit/button'
 import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from '~/src/shared/ui/kit/select'
 import { Input } from '~/src/shared/ui/kit/input'
-import { VisuallyHidden } from 'radix-vue'
-import { z } from 'zod'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { useToast } from '~/src/shared/ui/kit/toast'
+
 import { mockCertificates, mockIssuers } from '../__mocks__'
 import type { Certificate, Issuer } from '../types'
 

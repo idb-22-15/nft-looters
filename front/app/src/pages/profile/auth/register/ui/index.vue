@@ -2,6 +2,7 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { z } from 'zod'
+
 import { validationErrors } from '~/src/shared/config'
 import { Button } from '~/src/shared/ui/kit/button'
 import { Input } from '~/src/shared/ui/kit/input'

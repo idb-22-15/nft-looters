@@ -1,4 +1,5 @@
 import { CalendarDate } from '@internationalized/date'
+
 import type { User, UserOrganization } from '../model/user'
 
 export const organization: UserOrganization = {

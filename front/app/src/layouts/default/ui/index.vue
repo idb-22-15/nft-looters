@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { Avatar, AvatarImage } from '~/src/shared/ui/kit/avatar'
 import { PanelLeft } from 'lucide-vue-next'
 import { useToggle } from '@vueuse/core'
+
+import { Avatar, AvatarImage } from '~/src/shared/ui/kit/avatar'
 import { cn } from '~/src/shared/lib/utils'
 import { useUserStore } from '~/src/shared/model/user'
+
 import { navItems } from '../config'
 
 defineSlots<{

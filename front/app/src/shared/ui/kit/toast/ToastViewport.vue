@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastViewport, type ToastViewportProps } from 'radix-vue'
+
 import { cn } from '~/src/shared/lib/utils'
 
 const props = defineProps<ToastViewportProps & { class?: HTMLAttributes['class'] }>()

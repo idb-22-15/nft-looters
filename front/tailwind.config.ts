@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-
 import animate from 'tailwindcss-animate'
 import pkg from 'tailwindcss/defaultTheme'
 
