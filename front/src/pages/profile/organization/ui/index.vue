@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { Input } from '~/src/shared/ui/kit/input'
+import { Button } from '~/src/shared/ui/kit/button'
+import { Textarea } from '~/src/shared/ui/kit/textarea'
+import { FormField, FormControl, FormLabel, FormItem, FormMessage } from '~/src/shared/ui/kit/form'
+import { Dialog, DialogContent, DialogHeader, DialogDescription, DialogTitle } from '~/src/shared/ui/kit/dialog'
+import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
 import { toTypedSchema } from '@vee-validate/zod'
 import { VisuallyHidden } from 'radix-vue'
 import { useForm } from 'vee-validate'

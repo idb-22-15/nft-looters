@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     // '@nuxt/fonts',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
-    'shadcn-nuxt',
+    // 'shadcn-nuxt',
     '@pinia/nuxt',
   ],
 
@@ -19,7 +19,9 @@ export default defineNuxtConfig({
   //     { name: 'Onest', provider: 'google', weight: 'bold' },
   //   ],
   // },
-
+  // shadcn: {
+  //   componentDir: './src/shared/ui',
+  // },
   eslint: {
     config: {
       stylistic: true,

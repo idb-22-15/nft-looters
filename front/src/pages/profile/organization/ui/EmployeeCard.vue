@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useAuthenticatedUser } from '~/src/shared/model/user'
 import { cn } from '~/src/shared/lib/utils'
-import { buttonVariants } from '~/components/ui/button'
+import { buttonVariants, Button } from '~/src/shared/ui/kit/button'
+import { Avatar, AvatarFallback, AvatarImage } from '~/src/shared/ui/kit/avatar'
+import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
 
 defineSlots<{
   default: () => unknown
@@ -37,12 +39,6 @@ const isUser = (id: string) => user.value.id === id
         <AvatarFallback class="rounded-full">
           {{ props.employee.firstName.slice(0, 2) }}
         </AvatarFallback>
-        <!-- <FileText
-          v-if="props.hasRecommendationFromMe"
-          class="absolute -bottom-1 -right-1"
-          fill="white"
-          :size="16"
-        /> -->
       </Avatar>
       <span
         v-if="isUser(props.employee.id)"

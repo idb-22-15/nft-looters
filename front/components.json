@@ -11,7 +11,8 @@
   },
   "framework": "nuxt",
   "aliases": {
-    "components": "~/components",
+    "components": "~/src/shared/ui",
+    "ui": "~/src/shared/ui/kit",
     "utils": "~/src/shared/lib/utils"
   }
 }
