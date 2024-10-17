@@ -2,11 +2,12 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { ethers, type Provider, type Signer } from 'ethers'
 import { useForm } from 'vee-validate'
-import { z } from 'zod'
 
 import { Button } from '~/src/shared/ui/kit/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
+
+import { loginSchema } from '../config'
 
 const useSigner = () => {
   const provider = ref<Provider | null>(null)
@@ -37,12 +38,7 @@ const useSigner = () => {
 
 const { signer, login } = useSigner()
 
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6).max(256),
-})
-
-const { handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(schema) })
+const { handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(loginSchema) })
 const onSubmit = handleSubmit((values) => {
   console.log(values)
   login()

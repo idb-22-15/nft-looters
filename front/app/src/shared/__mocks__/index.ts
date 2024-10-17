@@ -1,8 +1,8 @@
 import { CalendarDate } from '@internationalized/date'
 
-import type { User, UserOrganization } from '../model/user'
+import type { OrganizationProfile, UserProfile } from '../model/user'
 
-export const organization: UserOrganization = {
+export const organization: OrganizationProfile = {
   id: 'org-001',
   name: 'ООО Пример Организации',
   employees: [
@@ -84,7 +84,7 @@ export const organization: UserOrganization = {
   ],
 }
 
-export const mockUser: User = {
+export const mockUser: UserProfile = {
   id: 'haha',
   avatar: 'https://sun9-48.userapi.com/impg/zPd7y71aGVlopDXhvJ9PA46bIpmsHiB1C0wfrA/1HOPPr6-mOA.jpg?size=1600x900&quality=96&sign=20d8367121e2ff6a41e704b51d378cc3&type=album',
   firstName: 'Матвей',

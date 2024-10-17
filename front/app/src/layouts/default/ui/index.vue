@@ -3,7 +3,7 @@ import { useToggle } from '@vueuse/core'
 import { PanelLeft } from 'lucide-vue-next'
 
 import { cn } from '~/src/shared/lib/utils'
-import { useUserStore } from '~/src/shared/model/user'
+import { useProfileStore, useUserStore } from '~/src/shared/model/user'
 import { Avatar, AvatarImage } from '~/src/shared/ui/kit/avatar'
 
 import { navItems } from '../config'
@@ -12,12 +12,15 @@ defineSlots<{
   default: (props: unknown) => unknown
 }>()
 
+const profileStore = useProfileStore()
+profileStore.load()
+
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
-useAsyncData('load', async () => {
-  await userStore.load()
-  return true
-})
+// useAsyncData('load', async () => {
+//   await userStore.load()
+//   return true
+// })
 
 const [isAsideOpen, toggleIsAsideOpen] = useToggle(true)
 const asideWidth = computed(() => isAsideOpen.value ? '320px' : '80px')
@@ -26,7 +29,10 @@ const layoutColumns = computed(() => `${asideWidth.value} 1fr`)
 
 <template>
   <div class="layout text-base text-black overflow-hidden">
-    <aside class="[grid-area:aside] bg-slate-50 flex flex-col gap-y-4 pt-6 pb-8 overflow-hidden">
+    <aside
+      class="[grid-area:aside] bg-slate-50 flex flex-col gap-y-4 pt-6 pb-8 overflow-hidden w-full fixed h-full transition-all "
+      :style="{ width: asideWidth }"
+    >
       <button
         class="p-2 w-fit self-end hover:bg-slate-200 transition rounded-lg"
         :class="isAsideOpen ? 'mr-6' : 'mx-0 self-center'"
@@ -91,6 +97,7 @@ const layoutColumns = computed(() => `${asideWidth.value} 1fr`)
 .layout {
   display: grid;
   grid-template-areas: 'aside main';
+  grid-template-columns: auto 1fr;
   grid-template-columns: v-bind(layoutColumns);
   min-height: 100svh;
   transition: all 0.3s;

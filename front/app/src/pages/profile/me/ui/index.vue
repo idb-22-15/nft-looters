@@ -9,7 +9,7 @@ import { useForm } from 'vee-validate'
 import { z } from 'zod'
 
 import { cn } from '~/src/shared/lib/utils'
-import { useAuthenticatedUser, useUserStore, type Gender } from '~/src/shared/model/user'
+import { useAuthenticatedUser, useProfileStore, useUserStore, type Gender } from '~/src/shared/model/user'
 import { Button } from '~/src/shared/ui/kit/button'
 import { Calendar } from '~/src/shared/ui/kit/calendar'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '~/src/shared/ui/kit/dialog'
@@ -18,17 +18,14 @@ import { Input } from '~/src/shared/ui/kit/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/src/shared/ui/kit/select'
 
+import { mockPhotos } from './__mocks__'
 import MetaMaskIcon from './MetaMaskIcon.vue'
 
 defineOptions({
   name: 'ProfilePage',
 })
 
-const mockPhotos = [
-  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.lifestyleasia.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2022%2F01%2F14164044%2Fmutant-975x1024-1.jpeg&f=1&nofb=1&ipt=e196d1beae57e458b3ab8da9a2bd7a8d4a9792a4be0fb884a4f094a37ac81549&ipo=images',
-  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffile%2Fnft-pictures-sxq84lbki4w5hy31.jpg&f=1&nofb=1&ipt=409fd3715613dbb1ecdf55a1794a43dde1d89ff3d0e1a5d0848b00e5ea6082ee&ipo=images',
-]
-
+const profileStore = useProfileStore()
 const userStore = useUserStore()
 const user = useAuthenticatedUser()
 
@@ -38,15 +35,15 @@ const schema = z.object({
   avatar: z.string().url().optional(),
   firstName: z.string({ message: errorRequired }).min(1, { message: errorRequired }).max(256),
   lastName: z.string({ message: errorRequired }).max(256),
-  birthday: z.string({ message: errorRequired }).date(),
-  gender: z.enum(['male', 'female'], { message: errorRequired }),
+  birthday: z.string({ message: errorRequired }).date().optional(),
+  gender: z.enum(['male', 'female'], { message: errorRequired }).optional(),
 })
 
 const { values, handleSubmit, setFieldValue, meta } = useForm({ validationSchema: toTypedSchema(schema), initialValues: {
   avatar: user.value.avatar,
   firstName: user.value.firstName,
   lastName: user.value.lastName,
-  birthday: user.value.birthday.toString(),
+  birthday: user.value.birthday?.toString(),
   gender: user.value.gender,
 } })
 
@@ -219,7 +216,7 @@ const df = new DateFormatter('ru-RU', {
       class="mt-8"
       type="button"
       variant="destructiveSecondary"
-      @click="userStore.logout()"
+      @click="profileStore.logout()"
     >
       Выйти из аккаунта
     </Button>
