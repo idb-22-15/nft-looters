@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\verificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\verificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\recommendationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\recommendationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\verificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\verificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\recommendationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\recommendationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,16 +47,8 @@
       "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\certificateentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\entities\\certificateentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\entities\\diplomentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -93,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|c:\\users\\ilyap\\source\\repos\\nft-looters\\back\\back.dataaccess\\migrations\\20241017132620_ic43.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{69506444-337E-487A-BFF4-41A16961EDB9}|back.DataAccess\\back.DataAccess.csproj|solutionrelative:back.dataaccess\\migrations\\20241017132620_ic43.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6D7D1B-758B-4AA7-8ABE-A2DDF657B630}|back.API\\back.API.csproj|solutionrelative:back.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6B97E67-B583-408F-9E15-30BDAA778D3C}|back.Core\\back.Core.csproj|C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.core\\viewmodel\\autorisationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -170,7 +170,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -184,40 +184,27 @@
               "RelativeDocumentMoniker": "back.API\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\UserController.cs",
               "RelativeToolTip": "back.API\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAKIAAAAAAAAAAADwv+AAAAAuAAAA",
+              "ViewState": "AQIAANUAAAAAAAAAAAAqwOoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-17T13:11:51.134Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "OrganizationController.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\OrganizationController.cs",
               "RelativeDocumentMoniker": "back.API\\Controllers\\OrganizationController.cs",
               "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\OrganizationController.cs",
               "RelativeToolTip": "back.API\\Controllers\\OrganizationController.cs",
-              "ViewState": "AQIAAIsAAAAAAAAAAAA6wLEAAAA5AAAA",
+              "ViewState": "AQIAAIsAAAAAAAAAAAA6wKMAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-17T13:34:38.618Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "back.DataAccess\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\ApplicationDbContext.cs",
-              "RelativeToolTip": "back.DataAccess\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBYAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T19:46:46.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "VerificationRequest.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\VerificationRequest.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\VerificationRequest.cs",
@@ -230,7 +217,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Program.cs",
+              "RelativeDocumentMoniker": "back.API\\Program.cs",
+              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Program.cs",
+              "RelativeToolTip": "back.API\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T19:35:08.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "back.API\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "back.API\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T19:36:22.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "back.DataAccess\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\ApplicationDbContext.cs",
+              "RelativeToolTip": "back.DataAccess\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBYAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T19:46:46.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "RecommendationViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.Core\\ViewModel\\RecommendationViewModel.cs",
               "RelativeDocumentMoniker": "back.Core\\ViewModel\\RecommendationViewModel.cs",
@@ -243,20 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Program.cs",
-              "RelativeDocumentMoniker": "back.API\\Program.cs",
-              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Program.cs",
-              "RelativeToolTip": "back.API\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T19:35:08.454Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "20241017142809_ic49.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017142809_ic49.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017142809_ic49.cs",
@@ -269,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\appsettings.json",
               "RelativeDocumentMoniker": "back.API\\appsettings.json",
@@ -282,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "20241017133209_ic45.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017133209_ic45.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017133209_ic45.cs",
@@ -295,7 +308,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "20241015112458_ic5.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241015112458_ic5.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241015112458_ic5.cs",
@@ -308,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "20241017132915_ic44.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017132915_ic44.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017132915_ic44.cs",
@@ -321,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "20241017140022_ic46.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017140022_ic46.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017140022_ic46.cs",
@@ -334,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "20241017140315_ic47.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017140315_ic47.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017140315_ic47.cs",
@@ -347,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "20241017141609_ic48.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017141609_ic48.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017141609_ic48.cs",
@@ -360,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "CertificateViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.Core\\ViewModel\\CertificateViewModel.cs",
               "RelativeDocumentMoniker": "back.Core\\ViewModel\\CertificateViewModel.cs",
@@ -373,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "DiplomViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.Core\\ViewModel\\DiplomViewModel.cs",
               "RelativeDocumentMoniker": "back.Core\\ViewModel\\DiplomViewModel.cs",
@@ -386,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "20241017132620_ic43.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Migrations\\20241017132620_ic43.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Migrations\\20241017132620_ic43.cs",
@@ -395,19 +408,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-17T13:26:21.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "back.API\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "back.API\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T19:36:22.74Z",
               "EditorCaption": ""
             },
             {
@@ -630,7 +630,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "DiplomEntity.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\DiplomEntity.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\DiplomEntity.cs",
@@ -664,13 +664,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "back.API\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.API\\Controllers\\AuthController.cs",
               "RelativeToolTip": "back.API\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAIUAAAAAAAAAAAAcwLQAAAANAAAA",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAmwLgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:34:50.242Z",
               "EditorCaption": ""
@@ -698,7 +698,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CertificateEntity.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\CertificateEntity.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\CertificateEntity.cs",
@@ -732,7 +732,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "RecommendationEntity.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\RecommendationEntity.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\RecommendationEntity.cs",
@@ -766,7 +766,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "OrganisationEntity.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\OrganisationEntity.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\OrganisationEntity.cs",
@@ -800,7 +800,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "UserEntity.cs",
               "DocumentMoniker": "C:\\Users\\ilyap\\source\\repos\\nft-looters\\back\\back.DataAccess\\Entities\\UserEntity.cs",
               "RelativeDocumentMoniker": "back.DataAccess\\Entities\\UserEntity.cs",

@@ -182,6 +182,44 @@ namespace back.API.Controllers
 
             return Ok(new { message = "Все куки удалены" });
         }
+
+        [HttpGet("profile")]
+        public async Task<IActionResult> Profile()
+        {
+
+            string? userId = HttpContext.Request.Cookies["userId"];
+
+            string? orgId = HttpContext.Request.Cookies["orgId"];
+
+            
+
+            if (userId == null && orgId != null)
+            {
+                var OrgId = Guid.Parse(orgId);
+                var diploms = await _context.Organizations
+                 .Where(o => o.Id == OrgId)
+                 .Include(o => o.Employees)
+                 .Select(o => new { o.Id, o.Name, o.Email, o.Employees })
+                 .ToListAsync();
+
+                return Ok(diploms);
+
+            }
+            else if (userId != null && orgId == null)
+            {
+                var UserId = Guid.Parse(userId);
+                var user = await _context.Users
+                .Where(o => o.Id == UserId)
+                .Include(p => p.Diplomas)
+                .Include(p => p.Certificates)
+                .Include(p => p.Organisation)
+                .Select(o => new { o.Id, o.Email, o.FirstName, o.LastName, o.Wallet, o.Organisation, o.Diplomas, o.Certificates, o.JobTitle })
+                .ToListAsync();
+
+                return Ok(user);
+            }
+            else { return BadRequest(new { message = "нет айди из кук или указаны оба айди" }); }
+        }
     }
 }
 
