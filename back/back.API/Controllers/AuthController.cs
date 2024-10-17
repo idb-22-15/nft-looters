@@ -30,7 +30,7 @@ namespace back.API.Controllers
         }
 
 
-        [HttpPost("login")]
+        [HttpPost("user/login")]
         public async Task<IActionResult> Autorisation([FromBody] AutorisationViewModel model)
         {
             if (ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace back.API.Controllers
                     }
 
                     HttpContext.Response.Cookies.Append("userId", user.Id.ToString());
-                    return Ok(new { message = "Все зашибись" });
+                    return Ok(user);
                 }
                 else
                 {
@@ -59,7 +59,7 @@ namespace back.API.Controllers
             }
         }
 
-        [HttpPost("register")]
+        [HttpPost("user/register")]
         public async Task<IActionResult> RegisterView([FromBody] RegisterViewModel model)
         { 
            
@@ -79,7 +79,7 @@ namespace back.API.Controllers
                     await _context.Users.AddAsync(user);
                     await _context.SaveChangesAsync();
                     HttpContext.Response.Cookies.Append("userId", user.Id.ToString());
-                    return Ok(new { message = "Все зашибись" });
+                    return Ok(user);
                 }
                 else
                 {
@@ -88,5 +88,100 @@ namespace back.API.Controllers
             }
             return BadRequest(new { message = "Что то пошло не так хз что" });
         }
+
+        [HttpPost("organization/login")]
+        public async Task<IActionResult> AutorisationOrganization([FromBody] AutorisationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var check =  await _context.Organizations.AnyAsync(u => u.Email == model.email);
+                if (check)
+                {
+
+                    OrganisationEntity user = await _context.Organizations.FirstOrDefaultAsync(c => c.Email == model.email);
+                    var result = _passwordHasher.Verify(model.password, user.PasswordHash);
+                    if (result == false)
+                    {
+                        return BadRequest(new { message = "Неправильный пароль" });
+                    }
+
+                    HttpContext.Response.Cookies.Append("orgId", user.Id.ToString());
+                    return Ok(user);
+                }
+                else
+                {
+                    return NotFound(new { message = "Нет компании с таким мейлом" });
+                } 
+            }
+            else
+            {
+                return BadRequest(new { message = "хз че произошло" });
+            }
+        }
+
+
+        [HttpPost("organization/register")]
+        public async Task<IActionResult> RegisterViewOrganization([FromBody] OrgViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                
+                
+                var check =  await _context.Organizations.AnyAsync(u => u.Email == model.email);
+
+                if (!check)
+                {
+                    var hashedPassword = _passwordHasher.Generate(model.password);
+                    OrganisationEntity organization = new OrganisationEntity()
+                    {
+                        Id = Guid.NewGuid(),
+                        Email = model.email,
+                        PasswordHash = hashedPassword,
+                        Name = model.name
+                    };
+                    await _context.Organizations.AddAsync(organization);
+                    await _context.SaveChangesAsync();
+                    HttpContext.Response.Cookies.Append("orgId", organization.Id.ToString());
+                    return Ok(organization);
+                }
+                else
+                {
+                    return Conflict(new { message = "уже есть юзер с таким мейлом" });
+                }
+            }
+            return BadRequest(new { message = "Что то пошло не так хз что" });
+        }
+
+        [HttpPost("organization/logout")]
+        public async Task<IActionResult> LogoutOrganization()
+        {
+
+            var cookies = Request.Cookies.Keys;
+
+            // Удаляем все куки
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+
+            return Ok(new { message = "Все куки удалены" });
+        }
+
+        [HttpPost("user/logout")]
+        public async Task<IActionResult> LogoutUser()
+        {
+
+            var cookies = Request.Cookies.Keys;
+
+            // Удаляем все куки
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+
+            return Ok(new { message = "Все куки удалены" });
+        }
     }
 }
+
