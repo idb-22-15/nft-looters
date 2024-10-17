@@ -12,6 +12,14 @@ namespace back.DataAccess
     {
         public DbSet<UserEntity> Users { get; set; }
 
+        public DbSet<OrganisationEntity> Organizations { get; set; }
+
+        public DbSet<DiplomEntity> Diploma { get; set; }
+
+        public DbSet<CertificateEntity> Certificates { get; set; }
+
+        public DbSet<RecommendationEntity> Recommendations { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

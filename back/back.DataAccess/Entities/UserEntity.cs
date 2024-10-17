@@ -26,6 +26,11 @@ namespace back.DataAccess.Entities
         public Guid? OrganisationId { get; set; }
         public OrganisationEntity? Organisation { get; set; }
 
+        public List<DiplomEntity>? Diplomas { get; set; }
+
+        public List<CertificateEntity>? Certificates { get; set; }
+
+
         public string? JobTitle { get; set; }
     }
 }
