@@ -2,23 +2,46 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 
+import { useOrganizationStore, useUserStore } from '~/src/shared/model/user'
 import { Button } from '~/src/shared/ui/kit/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/src/shared/ui/kit/tabs'
+import { useToast } from '~/src/shared/ui/kit/toast'
 
 import { organizationSchema, userSchema } from '../config'
 
+const userStore = useUserStore()
+const organizationStore = useOrganizationStore()
+
+const { toast } = useToast()
+
 const { handleSubmit: handleUserSubmit, meta: userMeta }
 = useForm({ validationSchema: toTypedSchema(userSchema) })
-const onUserSubmit = handleUserSubmit((values) => {
-  console.log(values)
+
+const onUserSubmit = handleUserSubmit(async (values) => {
+  try {
+    console.log('reg user', values)
+    userStore.register(values)
+    await navigateTo('/profile/user')
+  }
+  catch (_e) {
+    toast({ title: 'Упс', variant: 'destructive' })
+  }
 })
 
 const { handleSubmit: handleOrganizationSubmit, meta: organizationMeta }
 = useForm({ validationSchema: toTypedSchema(organizationSchema) })
-const onOrganizationSubmit = handleOrganizationSubmit((values) => {
-  console.log(values)
+
+const onOrganizationSubmit = handleOrganizationSubmit(async (values) => {
+  try {
+    console.log('reg org', values)
+    organizationStore.register(values)
+    await navigateTo('/profile/organization')
+  }
+  catch (_e) {
+    toast({ title: 'Упс', variant: 'destructive' })
+  }
 })
 </script>
 

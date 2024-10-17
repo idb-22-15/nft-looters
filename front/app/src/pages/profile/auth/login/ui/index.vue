@@ -3,11 +3,19 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { ethers, type Provider, type Signer } from 'ethers'
 import { useForm } from 'vee-validate'
 
+import { useOrganizationStore, useUserStore } from '~/src/shared/model/user'
 import { Button } from '~/src/shared/ui/kit/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
+import { Tabs, TabsList, TabsTrigger } from '~/src/shared/ui/kit/tabs'
+import { useToast } from '~/src/shared/ui/kit/toast'
 
 import { loginSchema } from '../config'
+
+const userStore = useUserStore()
+const organizationStore = useOrganizationStore()
+
+const { toast } = useToast()
 
 const useSigner = () => {
   const provider = ref<Provider | null>(null)
@@ -38,12 +46,25 @@ const useSigner = () => {
 
 const { signer, login } = useSigner()
 
-const { handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(loginSchema) })
-const onSubmit = handleSubmit((values) => {
+const profileType = ref<'user' | 'organization'>('user')
+
+const { handleSubmit, meta } = useForm({ validationSchema: toTypedSchema(loginSchema) })
+const onSubmit = handleSubmit(async (values) => {
   console.log(values)
-  login()
+  try {
+    if (profileType.value === 'user') {
+      userStore.login(values)
+      await navigateTo('/profile/user')
+    }
+    else {
+      organizationStore.login(values)
+      await navigateTo('/profile/organization')
+    }
+  }
+  catch (_e) {
+    toast({ title: 'Упс', variant: 'destructive' })
+  }
 })
-defineField('password', { validateOnModelUpdate: false })
 </script>
 
 <template>
@@ -52,6 +73,19 @@ defineField('password', { validateOnModelUpdate: false })
     <h1 class="text-4xl font-semibold">
       Вход
     </h1>
+    <Tabs
+      v-model:model-value="profileType"
+      class="mt-4"
+    >
+      <TabsList>
+        <TabsTrigger value="user">
+          Как личность
+        </TabsTrigger>
+        <TabsTrigger value="organization">
+          Как организация
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
     <form
       class="mt-4 flex max-w-3xl flex-col gap-y-4"
       @submit.prevent="onSubmit"

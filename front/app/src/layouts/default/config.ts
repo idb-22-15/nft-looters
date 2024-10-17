@@ -6,36 +6,69 @@ export type NavItem = {
   url: string
 }
 
-export const navItems: NavItem[] = [
+export const userNavItems: NavItem[] = [
   {
     icon: BriefcaseBusiness,
     title: 'Организация',
-    url: '/profile/organization',
+    url: '/profile/user/organization',
   },
   {
     icon: Crown,
     title: 'Навыки',
-    url: '/profile/skills',
+    url: '/profile/user/skills',
   },
   {
     icon: Award,
     title: 'Достижения',
-    url: '/profile/achievements',
+    url: '/profile/user/achievements',
   },
   {
     icon: FileBadge2,
     title: 'Дипломы',
-    url: '/profile/diploma',
+    url: '/profile/user/diploma',
   },
   {
     icon: ShieldCheck,
     title: 'Сертификаты',
-    url: '/profile/certificates',
+    url: '/profile/user/certificates',
   },
   {
     icon: FileText,
     title: 'Рекомендации',
-    url: '/profile/recommendations',
+    url: '/profile/user/recommendations',
+  },
+  {
+    icon: Settings,
+    title: 'Настройки',
+    url: '/settings',
+  },
+]
+
+export const organizationNavItems: NavItem[] = [
+  {
+    icon: BriefcaseBusiness,
+    title: 'Организация',
+    url: '/profile/organization/organization',
+  },
+  {
+    icon: Award,
+    title: 'Достижения',
+    url: '/profile/organization/achievements',
+  },
+  {
+    icon: FileBadge2,
+    title: 'Дипломы',
+    url: '/profile/organization/diploma',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Сертификаты',
+    url: '/profile/organization/certificates',
+  },
+  {
+    icon: FileText,
+    title: 'Рекомендации',
+    url: '/profile/organization/recommendations',
   },
   {
     icon: Settings,

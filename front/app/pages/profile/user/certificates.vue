@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProfileCertificatesPage } from '~/src/pages/profile/certificates'
+import { ProfileCertificatesPage } from '~/src/pages/profile/user/certificates'
 </script>
 
 <template>

@@ -9,7 +9,7 @@ import { useForm } from 'vee-validate'
 import { z } from 'zod'
 
 import { cn } from '~/src/shared/lib/utils'
-import { useAuthenticatedUser, useProfileStore, useUserStore, type Gender } from '~/src/shared/model/user'
+import { useAuthenticatedUser, useUserStore, type Gender } from '~/src/shared/model/user'
 import { Button } from '~/src/shared/ui/kit/button'
 import { Calendar } from '~/src/shared/ui/kit/calendar'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '~/src/shared/ui/kit/dialog'
@@ -17,15 +17,14 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/
 import { Input } from '~/src/shared/ui/kit/input'
 import { Popover, PopoverContent, PopoverTrigger } from '~/src/shared/ui/kit/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/src/shared/ui/kit/select'
+import MetaMaskIcon from '~/src/shared/ui/MetaMaskIcon.vue'
 
 import { mockPhotos } from './__mocks__'
-import MetaMaskIcon from './MetaMaskIcon.vue'
 
 defineOptions({
   name: 'ProfilePage',
 })
 
-const profileStore = useProfileStore()
 const userStore = useUserStore()
 const user = useAuthenticatedUser()
 
@@ -216,7 +215,7 @@ const df = new DateFormatter('ru-RU', {
       class="mt-8"
       type="button"
       variant="destructiveSecondary"
-      @click="profileStore.logout()"
+      @click="userStore.logout()"
     >
       Выйти из аккаунта
     </Button>

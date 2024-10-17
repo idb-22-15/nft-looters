@@ -1,4 +1,4 @@
-import { mockUser } from '../__mocks__'
+import { mockOrganization, mockUser } from '../__mocks__'
 import { backendApi } from '../api'
 
 export type Gender = 'male' | 'female'
@@ -39,11 +39,11 @@ export type CreateOrganizationProfile = {
   repeatPassword: string
 }
 
-const isUserProfile = (profile: UserProfile | OrganizationProfile): profile is UserProfile => {
+export const isUserProfile = (profile: UserProfile | OrganizationProfile): profile is UserProfile => {
   return !('employees' in profile)
 }
 
-const isOrganizationProfile = (profile: UserProfile | OrganizationProfile): profile is OrganizationProfile => {
+export const isOrganizationProfile = (profile: UserProfile | OrganizationProfile): profile is OrganizationProfile => {
   return ('employees' in profile)
 }
 
@@ -51,10 +51,14 @@ export const useProfileStore = defineStore('profile', () => {
   const { data: profile, status, error, refresh: load }
     = useAsyncData('profile', async () => {
       // backendApi<UserProfile | OrganizationProfile>('/profile')
+
+      // throw new Error('ooo')
       return new Promise((res) => {
-        setTimeout(() => res(mockUser), 1000)
+        setTimeout(() => res(mockOrganization), 1000)
       }) as Promise<UserProfile | OrganizationProfile>
     })
+
+  const isLoggedIn = computed(() => profile.value !== undefined)
 
   watch(profile, () => {
     if (profile.value === null) navigateTo('/auth/login')
@@ -71,92 +75,92 @@ export const useProfileStore = defineStore('profile', () => {
   })
 
   return {
-    profile, status, error, isUserProfile: isUserProfile_, isOrganizationProfile: isOrganizationProfile_, load,
+    profile, status, error, isLoggedIn, isUserProfile: isUserProfile_, isOrganizationProfile: isOrganizationProfile_, load,
   }
 })
 
 export const useUserStore = defineStore('user', () => {
   const profileStore = useProfileStore()
-  const { profile, status, error, isUserProfile } = storeToRefs(profileStore)
+  const { profile, status, error } = storeToRefs(profileStore)
 
-  const user = computed<UserProfile | undefined>({
-    get: () => {
-      if (isUserProfile.value === false) throw new Error('profile is not user')
-      return profile.value as UserProfile | undefined
-    },
-    set: value => profile.value = value,
-  })
+  // const user = computed<UserProfile | undefined>({
+  //   get: () => {
+  //     if (isUserProfile.value === false) throw new Error('profile is not user')
+  //     return profile.value as UserProfile | undefined
+  //   },
+  //   set: value => profile.value = value,
+  // })
 
   const update = async (newUser: UserProfile) => {
-    user.value = newUser
+    profile.value = newUser
   }
 
   const login = async (data: { password: string }) => {
-    user.value = await backendApi('/auth/user/login', { body: data })
+    profile.value = await backendApi('/auth/user/login', { body: data })
   }
 
   const register = async (data: CreateUserProfile) => {
-    user.value = await backendApi('/auth/user/register', { body: data })
+    profile.value = await backendApi('/auth/user/register', { body: data })
   }
 
   const logout = async () => {
     await backendApi('/auth/user/logout')
-    user.value = undefined
+    profile.value = undefined
   }
 
   return {
-    user, status, error, update, login, register, logout,
+    status, error, update, login, register, logout,
   }
 })
 
 export const useAuthenticatedUser = () => {
-  const { user } = storeToRefs(useUserStore())
+  const { profile, isUserProfile } = storeToRefs(useProfileStore())
 
   return computed(() => {
-    if (!user.value) throw new Error('Пользователь должен быть аутентифицирован')
-    return user.value
+    if (!profile.value || !isUserProfile.value) throw new Error('Пользователь должен быть аутентифицирован')
+    return profile.value as UserProfile
   })
 }
 
 export const useOrganizationStore = defineStore('organization', () => {
   const profileStore = useProfileStore()
-  const { profile, status, error, isUserProfile } = storeToRefs(profileStore)
+  const { profile, status, error } = storeToRefs(profileStore)
 
-  const organization = computed<OrganizationProfile | undefined>({
-    get: () => {
-      if (isUserProfile.value === false) throw new Error('profile is not organization')
-      return profile.value as OrganizationProfile | undefined
-    },
-    set: value => profile.value = value,
-  })
+  // const organization = computed<OrganizationProfile | undefined>({
+  //   get: () => {
+  //     if (isUserProfile.value === false) throw new Error('profile is not organization')
+  //     return profile.value as OrganizationProfile | undefined
+  //   },
+  //   set: value => profile.value = value,
+  // })
 
   // const update = async (newUser: OrganizationProfile) => {
   //   organization.value = newUser
   // }
 
   const login = async (data: { password: string }) => {
-    organization.value = await backendApi('/auth/organization/login', { body: data })
+    profile.value = await backendApi('/auth/organization/login', { body: data })
   }
 
   const register = async (data: CreateOrganizationProfile) => {
-    organization.value = await backendApi('/auth/organization/register', { body: data })
+    profile.value = await backendApi('/auth/organization/register', { body: data })
   }
 
   const logout = async () => {
     await backendApi('/auth/user/logout')
-    organization.value = undefined
+    profile.value = undefined
   }
 
   return {
-    organization, status, error, login, register, logout,
+    status, error, login, register, logout,
   }
 })
 
 export const useAuthenticatedOrganization = () => {
-  const { organization } = storeToRefs(useOrganizationStore())
+  const { profile, isOrganizationProfile } = storeToRefs(useProfileStore())
 
   return computed(() => {
-    if (!organization.value) throw new Error('Организация должна быть аутентифицирована')
-    return organization.value
+    if (!profile.value || !isOrganizationProfile.value) throw new Error('Организация должна быть аутентифицирована')
+    return profile.value as OrganizationProfile
   })
 }

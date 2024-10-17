@@ -29,7 +29,7 @@ const requiredError = 'Это обязательное поле'
 
 const requestSchema = z.object({
   issuerId: z.string({ message: requiredError }),
-  certificateType: z.string({ required_error: requiredError }),
+  // certificateType: z.string({ required_error: requiredError }),
   message: z.string().max(256).optional(),
 })
 
@@ -137,7 +137,7 @@ const onSubmitCreate = handleSubmitCreate((values) => {
                 </FormItem>
               </FormField>
 
-              <FormField
+              <!-- <FormField
                 v-slot="{ componentField }"
                 name="certificateType"
               >
@@ -161,7 +161,7 @@ const onSubmitCreate = handleSubmitCreate((values) => {
                   </Select>
                   <FormMessage />
                 </FormItem>
-              </FormField>
+              </FormField> -->
               <FormField
                 v-slot="{ componentField }"
                 name="message"
