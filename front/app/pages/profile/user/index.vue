@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ProfileMe } from '~/src/pages/profile/user/me'
+import { ProfileUserMePage } from '~/src/pages/profile/user/me'
 </script>
 
 <template>
-  <ProfileMe />
+  <ProfileUserMePage />
 </template>

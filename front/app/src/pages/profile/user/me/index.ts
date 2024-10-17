@@ -1,1 +1,1 @@
-export { default as ProfileMe } from './ui/index.vue'
+export { default as ProfileUserMePage } from './ui/index.vue'
