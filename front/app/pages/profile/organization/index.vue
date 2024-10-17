@@ -1,5 +1,7 @@
+<script setup lang="ts">
+import { ProfileOrganizationMePage } from '~/src/pages/profile/organization/me'
+</script>
+
 <template>
-  <div class="">
-    ff
-  </div>
+  <ProfileOrganizationMePage />
 </template>

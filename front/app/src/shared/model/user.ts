@@ -39,6 +39,11 @@ export type CreateOrganizationProfile = {
   repeatPassword: string
 }
 
+export type UpdateOrganizationProfile = {
+  avatar?: string
+  name: string
+}
+
 export const isUserProfile = (profile: UserProfile | OrganizationProfile): profile is UserProfile => {
   return !('employees' in profile)
 }
@@ -59,6 +64,8 @@ export const useProfileStore = defineStore('profile', () => {
     })
 
   const isLoggedIn = computed(() => profile.value !== undefined)
+  const maybeUser = computed(() => profile.value ? isUserProfile(profile.value) ? profile.value : null : undefined)
+  const maybeOrganization = computed(() => profile.value ? isOrganizationProfile(profile.value) ? profile.value : null : undefined)
 
   watch(profile, () => {
     if (profile.value === null) navigateTo('/auth/login')
@@ -75,7 +82,15 @@ export const useProfileStore = defineStore('profile', () => {
   })
 
   return {
-    profile, status, error, isLoggedIn, isUserProfile: isUserProfile_, isOrganizationProfile: isOrganizationProfile_, load,
+    profile,
+    status,
+    error,
+    isLoggedIn,
+    maybeUser,
+    maybeOrganization,
+    isUserProfile: isUserProfile_,
+    isOrganizationProfile: isOrganizationProfile_,
+    load,
   }
 })
 
@@ -91,10 +106,6 @@ export const useUserStore = defineStore('user', () => {
   //   set: value => profile.value = value,
   // })
 
-  const update = async (newUser: UserProfile) => {
-    profile.value = newUser
-  }
-
   const login = async (data: { password: string }) => {
     profile.value = await backendApi('/auth/user/login', { body: data })
   }
@@ -108,8 +119,18 @@ export const useUserStore = defineStore('user', () => {
     profile.value = undefined
   }
 
+  const exitOrganization = async () => {
+    await backendApi('/user/exitOrganization');
+    (profile.value as UserProfile).organization = undefined
+  }
+
+  const update = async (data: UserProfile) => {
+    // await backendApi('/user', {method: "PUT", body: data})
+    profile.value = data
+  }
+
   return {
-    status, error, update, login, register, logout,
+    status, error, update, login, register, logout, exitOrganization,
   }
 })
 
@@ -151,8 +172,14 @@ export const useOrganizationStore = defineStore('organization', () => {
     profile.value = undefined
   }
 
+  const update = async (data: UpdateOrganizationProfile) => {
+    // await backendApi('/organization', { method: 'PUT', body: data })
+    if (profile.value)
+      profile.value = { ...profile.value, ...data }
+  }
+
   return {
-    status, error, login, register, logout,
+    status, error, login, register, logout, update,
   }
 })
 

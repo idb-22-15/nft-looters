@@ -37,11 +37,11 @@ export const userNavItems: NavItem[] = [
     title: 'Рекомендации',
     url: '/profile/user/recommendations',
   },
-  {
-    icon: Settings,
-    title: 'Настройки',
-    url: '/settings',
-  },
+  // {
+  //   icon: Settings,
+  //   title: 'Настройки',
+  //   url: '/settings',
+  // },
 ]
 
 export const organizationNavItems: NavItem[] = [
@@ -65,14 +65,9 @@ export const organizationNavItems: NavItem[] = [
     title: 'Сертификаты',
     url: '/profile/organization/certificates',
   },
-  {
-    icon: FileText,
-    title: 'Рекомендации',
-    url: '/profile/organization/recommendations',
-  },
-  {
-    icon: Settings,
-    title: 'Настройки',
-    url: '/settings',
-  },
+  // {
+  //   icon: Settings,
+  //   title: 'Настройки',
+  //   url: '/settings',
+  // },
 ]

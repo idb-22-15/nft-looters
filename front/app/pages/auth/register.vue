@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RegisterPage } from '~/src/pages/profile/auth/register'
+import { RegisterPage } from '~/src/pages/auth/register'
 </script>
 
 <template>
