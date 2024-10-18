@@ -168,7 +168,7 @@ export const useOrganizationStore = defineStore('organization', () => {
   }
 
   const logout = async () => {
-    await backendApi('/auth/user/logout')
+    // await backendApi('/auth/user/logout')
     profile.value = undefined
   }
 

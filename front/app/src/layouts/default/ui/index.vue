@@ -3,7 +3,7 @@ import { useToggle } from '@vueuse/core'
 import { LogIn, PanelLeft } from 'lucide-vue-next'
 
 import { cn } from '~/src/shared/lib/utils'
-import { isUserProfile, useProfileStore, useUserStore } from '~/src/shared/model/user'
+import { isUserProfile, useProfileStore } from '~/src/shared/model/user'
 import { Avatar, AvatarFallback, AvatarImage } from '~/src/shared/ui/kit/avatar'
 import { buttonVariants } from '~/src/shared/ui/kit/button'
 
@@ -59,7 +59,8 @@ const layoutColumns = computed(() => `${asideWidth.value} 1fr`)
         />
       </button>
       <div
-        class=" flex gap-x-4"
+        v-if="!profile"
+        class="flex gap-x-4"
         :class="[isOpenAside ? 'mx-8' : 'mx-4']"
       >
         <template v-if="isOpenAside">

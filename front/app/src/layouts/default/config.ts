@@ -12,20 +12,20 @@ export const userNavItems: NavItem[] = [
     title: 'Организация',
     url: '/profile/user/organization',
   },
-  {
-    icon: Crown,
-    title: 'Навыки',
-    url: '/profile/user/skills',
-  },
-  {
-    icon: Award,
-    title: 'Достижения',
-    url: '/profile/user/achievements',
-  },
+  // {
+  //   icon: Crown,
+  //   title: 'Навыки',
+  //   url: '/profile/user/skills',
+  // },
+  // {
+  //   icon: Award,
+  //   title: 'Достижения',
+  //   url: '/profile/user/achievements',
+  // },
   {
     icon: FileBadge2,
     title: 'Дипломы',
-    url: '/profile/user/diploma',
+    url: '/profile/user/diplomas',
   },
   {
     icon: ShieldCheck,
@@ -50,15 +50,15 @@ export const organizationNavItems: NavItem[] = [
     title: 'Организация',
     url: '/profile/organization/organization',
   },
-  {
-    icon: Award,
-    title: 'Достижения',
-    url: '/profile/organization/achievements',
-  },
+  // {
+  //   icon: Award,
+  //   title: 'Достижения',
+  //   url: '/profile/organization/achievements',
+  // },
   {
     icon: FileBadge2,
     title: 'Дипломы',
-    url: '/profile/organization/diploma',
+    url: '/profile/organization/diplomas',
   },
   {
     icon: ShieldCheck,
