@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { buttonVariants } from '~/src/shared/ui/kit/button'
 </script>
 
 <template>
@@ -31,6 +31,14 @@
       </div>
       <div class="slide ">
         <span class="">Мы не справились </span>
+      </div>
+      <div class="slide ">
+        <NuxtLink
+          :class="buttonVariants({ size: 'lg' })"
+          to="/profile/user"
+        >
+          Смотреть, что получилось
+        </NuxtLink>
       </div>
     </div>
   </div>
