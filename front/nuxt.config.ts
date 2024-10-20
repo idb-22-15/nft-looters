@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: { enabled: false },
   modules: [
-    // '@nuxt/fonts',
+    '@nuxt/fonts',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     // 'shadcn-nuxt',

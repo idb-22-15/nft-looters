@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { LoginPage } from '~/src/pages/auth/login'
+import { HomePage } from '~/src/pages/home'
+
+definePageMeta({
+  layout: false,
+})
 </script>
 
 <template>
-  <LoginPage />
+  <HomePage />
 </template>

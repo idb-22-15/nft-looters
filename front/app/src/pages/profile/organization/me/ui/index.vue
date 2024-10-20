@@ -24,17 +24,20 @@ const organization = useAuthenticatedOrganization()
 const errorRequired = 'Это обязательное поле'
 
 const schema = z.object({
-  avatar: z.string().url().optional(),
+  avatar: z.instanceof(File),
   name: z.string({ message: errorRequired }).min(1, { message: errorRequired }).max(256),
 })
 
-const { values, handleSubmit, meta } = useForm({ validationSchema: toTypedSchema(schema), initialValues: {
-  avatar: organization.value.avatar,
+const { values, handleSubmit, meta, defineField } = useForm({ validationSchema: toTypedSchema(schema), initialValues: {
+  avatar: undefined,
   name: organization.value.name,
 } })
+const ava = ref()
+
+const [avatar, avatarAttrs] = defineField('avatar')
 
 const onSubmit = handleSubmit((values) => {
-  console.log('update org')
+  console.log('update org', values.avatar)
 })
 </script>
 
@@ -46,10 +49,10 @@ const onSubmit = handleSubmit((values) => {
     <div class="grid items-center mt-4 grid-cols-[max-content_1fr] gap-x-4">
       <div class="">
         <img
-          v-if="values.avatar"
+          v-if="organization.avatar"
           alt="avatar"
           class="object-cover w-32 aspect-square rounded-full"
-          :src="values.avatar"
+          :src="organization.avatar"
         >
         <div
           v-else

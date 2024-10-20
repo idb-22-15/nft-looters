@@ -59,7 +59,7 @@ export const useProfileStore = defineStore('profile', () => {
 
       // throw new Error('ooo')
       return new Promise((res) => {
-        setTimeout(() => res(mockOrganization), 1000)
+        setTimeout(() => res(mockUser), 1000)
       }) as Promise<UserProfile | OrganizationProfile>
     })
 

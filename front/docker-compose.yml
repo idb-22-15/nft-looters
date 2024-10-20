@@ -1,0 +1,12 @@
+services:
+  nuxt:
+    image: oven/bun:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: ["bun", "run", "start"]
