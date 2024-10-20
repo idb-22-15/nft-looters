@@ -4,7 +4,7 @@ import { useForm } from 'vee-validate'
 
 import { useOrganizationStore, useUserStore } from '~/src/shared/model/user'
 import { Button } from '~/src/shared/ui/kit/button'
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/src/shared/ui/kit/form'
 import { Input } from '~/src/shared/ui/kit/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/src/shared/ui/kit/tabs'
 import { useToast } from '~/src/shared/ui/kit/toast'
@@ -16,33 +16,36 @@ const organizationStore = useOrganizationStore()
 
 const { toast } = useToast()
 
-const { handleSubmit: handleUserSubmit, meta: userMeta }
-= useForm({ validationSchema: toTypedSchema(userSchema) })
+// const { handleSubmit: handleUserSubmit, meta: userMeta }
+// = useForm({ validationSchema: toTypedSchema(userSchema) })
 
-const onUserSubmit = handleUserSubmit(async (values) => {
+const onUserSubmit = async (values) => {
   try {
     console.log('reg user', values)
-    userStore.register(values)
+    await userStore.register(values)
     await navigateTo('/profile/user')
   }
   catch (_e) {
+    console.log(_e)
     toast({ title: 'Упс', variant: 'destructive' })
   }
-})
+}
 
-const { handleSubmit: handleOrganizationSubmit, meta: organizationMeta }
-= useForm({ validationSchema: toTypedSchema(organizationSchema) })
+// const { handleSubmit: handleOrganizationSubmit, meta: organizationMeta }
+// = useForm({ validationSchema: toTypedSchema(organizationSchema) })
 
-const onOrganizationSubmit = handleOrganizationSubmit(async (values) => {
+const onOrganizationSubmit = async (values) => {
   try {
     console.log('reg org', values)
-    organizationStore.register(values)
+    await organizationStore.register(values)
     await navigateTo('/profile/organization')
   }
   catch (_e) {
+    console.log(_e)
+
     toast({ title: 'Упс', variant: 'destructive' })
   }
-})
+}
 </script>
 
 <template>
@@ -63,9 +66,11 @@ const onOrganizationSubmit = handleOrganizationSubmit(async (values) => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="user">
-        <form
+        <Form
+          v-slot="{ meta: userMeta }"
           class="mt-4 flex max-w-3xl flex-col gap-y-4"
-          @submit.prevent="onUserSubmit"
+          :validation-schema="toTypedSchema(userSchema)"
+          @submit="onUserSubmit"
         >
           <FormField
             v-slot="{ componentField }"
@@ -147,12 +152,14 @@ const onOrganizationSubmit = handleOrganizationSubmit(async (values) => {
             class="font-semibold"
             to="/auth/login"
           >Войти</NuxtLink></span>
-        </form>
+        </Form>
       </TabsContent>
       <TabsContent value="organization">
-        <form
+        <Form
+          v-slot="{ meta: organizationMeta }"
           class="mt-4 flex max-w-3xl flex-col gap-y-4"
-          @submit.prevent="onOrganizationSubmit"
+          :validation-schema="toTypedSchema(organizationSchema)"
+          @submit="onOrganizationSubmit"
         >
           <FormField
             v-slot="{ componentField }"
@@ -221,7 +228,7 @@ const onOrganizationSubmit = handleOrganizationSubmit(async (values) => {
             class="font-semibold"
             to="/auth/login"
           >Войти</NuxtLink></span>
-        </form>
+        </Form>
       </TabsContent>
     </Tabs>
   </div>

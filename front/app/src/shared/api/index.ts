@@ -1,3 +1,3 @@
 import { getEnv } from '../env'
 
-export const backendApi = $fetch.create({ baseURL: 'localhost:3000' })
+export const backendApi = $fetch.create({ baseURL: getEnv().BACKEND_API })

@@ -55,12 +55,12 @@ export const isOrganizationProfile = (profile: UserProfile | OrganizationProfile
 export const useProfileStore = defineStore('profile', () => {
   const { data: profile, status, error, refresh: load }
     = useAsyncData('profile', async () => {
-      // backendApi<UserProfile | OrganizationProfile>('/profile')
+      return backendApi<UserProfile | OrganizationProfile>('/user')
 
       // throw new Error('ooo')
-      return new Promise((res) => {
-        setTimeout(() => res(mockUser), 1000)
-      }) as Promise<UserProfile | OrganizationProfile>
+      // return new Promise((res) => {
+      //   setTimeout(() => res(mockUser), 1000)
+      // }) as Promise<UserProfile | OrganizationProfile>
     })
 
   const isLoggedIn = computed(() => profile.value !== undefined)
@@ -107,11 +107,11 @@ export const useUserStore = defineStore('user', () => {
   // })
 
   const login = async (data: { password: string }) => {
-    profile.value = await backendApi('/auth/user/login', { body: data })
+    profile.value = await backendApi('/auth/user/login', { method: 'POST', body: data })
   }
 
   const register = async (data: CreateUserProfile) => {
-    profile.value = await backendApi('/auth/user/register', { body: data })
+    profile.value = await backendApi('/auth/user/register', { method: 'POST', body: data })
   }
 
   const logout = async () => {
@@ -160,11 +160,11 @@ export const useOrganizationStore = defineStore('organization', () => {
   // }
 
   const login = async (data: { password: string }) => {
-    profile.value = await backendApi('/auth/organization/login', { body: data })
+    profile.value = await backendApi('/auth/organization/login', { method: 'POST', body: data })
   }
 
   const register = async (data: CreateOrganizationProfile) => {
-    profile.value = await backendApi('/auth/organization/register', { body: data })
+    profile.value = await backendApi('/auth/organization/register', { method: 'POST', body: data })
   }
 
   const logout = async () => {

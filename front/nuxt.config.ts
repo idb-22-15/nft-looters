@@ -34,5 +34,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: [],
   },
+  routeRules: {
+    'http://localhost:5075/': {
+      cors: true,
+    },
+  },
   // components: { dirs: [] }
 })

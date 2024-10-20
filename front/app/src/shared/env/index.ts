@@ -5,6 +5,7 @@ export const envSchema = z.object({
 })
 
 export const getEnv = () => {
-  console.log(process.env)
-  return envSchema.parse(process.env)
+  return envSchema.parse({
+    BACKEND_API: 'http://localhost:5075/',
+  })
 }
