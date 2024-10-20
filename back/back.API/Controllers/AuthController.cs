@@ -29,6 +29,15 @@ namespace back.API.Controllers
             _environment = environment;
         }
 
+        private readonly CookieOptions _cookieOptions = new()
+        {
+            Path = "/",
+            HttpOnly = true,
+            Secure = true, // Используйте true, если у вас HTTPS
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTimeOffset.UtcNow.AddDays(7) // Время жизни куки
+        };
+
 
         [HttpPost("user/login")]
         public async Task<IActionResult> Autorisation([FromBody] AutorisationViewModel model)
@@ -45,7 +54,7 @@ namespace back.API.Controllers
                         return BadRequest(new { message = "Неправильный пароль" });
                     }
 
-                    HttpContext.Response.Cookies.Append("userId", user.Id.ToString());
+                    HttpContext.Response.Cookies.Append("userId", user.Id.ToString(), _cookieOptions);
                     return Ok(user);
                 }
                 else
@@ -61,8 +70,8 @@ namespace back.API.Controllers
 
         [HttpPost("user/register")]
         public async Task<IActionResult> RegisterView([FromBody] RegisterViewModel model)
-        { 
-           
+        {
+
             if (ModelState.IsValid)
             {
                 if (!_usersRepository.UserExist(model.email).Result)
@@ -78,7 +87,7 @@ namespace back.API.Controllers
                     };
                     await _context.Users.AddAsync(user);
                     await _context.SaveChangesAsync();
-                    HttpContext.Response.Cookies.Append("userId", user.Id.ToString());
+                    HttpContext.Response.Cookies.Append("userId", user.Id.ToString(), _cookieOptions);
                     return Ok(user);
                 }
                 else
@@ -94,7 +103,7 @@ namespace back.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var check =  await _context.Organizations.AnyAsync(u => u.Email == model.email);
+                var check = await _context.Organizations.AnyAsync(u => u.Email == model.email);
                 if (check)
                 {
 
@@ -111,7 +120,7 @@ namespace back.API.Controllers
                 else
                 {
                     return NotFound(new { message = "Нет компании с таким мейлом" });
-                } 
+                }
             }
             else
             {
@@ -126,9 +135,9 @@ namespace back.API.Controllers
 
             if (ModelState.IsValid)
             {
-                
-                
-                var check =  await _context.Organizations.AnyAsync(u => u.Email == model.email);
+
+
+                var check = await _context.Organizations.AnyAsync(u => u.Email == model.email);
 
                 if (!check)
                 {
