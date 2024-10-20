@@ -17,6 +17,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Добавляем CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+        builder.AllowAnyHeader();
+    });
+});
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
@@ -43,6 +54,9 @@ app.UseCookiePolicy(new CookiePolicyOptions
 });
 
 app.UseHttpsRedirection();
+
+// Включаем CORS
+app.UseCors("MyCorsPolicy");
 
 app.UseAuthorization();
 app.UseAuthentication();
